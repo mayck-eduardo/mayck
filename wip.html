@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building... | Mayck Santos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #050505;
+            color: #e1e1e1;
+            font-family: 'Space Grotesk', sans-serif;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .container { text-align: center; }
+        h1 { font-size: 3rem; margin-bottom: 10px; letter-spacing: -2px; }
+        p { color: #3b82f6; text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem; margin-bottom: 40px; }
+        
+        /* Barra de Progresso */
+        .loader-line {
+            width: 200px;
+            height: 2px;
+            background: #222;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .loader-line::after {
+            content: '';
+            position: absolute;
+            left: -50%;
+            height: 100%;
+            width: 40%;
+            background: #3b82f6;
+            animation: load 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        @keyframes load {
+            0% { left: -50%; }
+            100% { left: 150%; }
+        }
+
+        .back-link {
+            margin-top: 50px;
+            text-decoration: none;
+            color: #555;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .back-link:hover { color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>NEXT LEVEL</h1>
+        <p>Em Desenvolvimento</p>
+        <div class="loader-line"></div>
+        <br>
+        <a href="/" class="back-link">← Voltar ao Portfólio</a>
+    </div>
+</body>
+</html>

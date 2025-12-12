@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO & SOCIAL (Como aparece no WhatsApp/LinkedIn) -->
+  <title>Mayck Santos | Desenvolvedor & Engenharia</title>
+  <meta name="description"
+    content="Portfólio de Mayck Santos. Estudante de Engenharia da Computação, Desenvolvedor Full Stack e Músico. Especialista em Java, React e Interfaces Modernas.">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mayck-eduardo.web.app/">
+  <meta property="og:title" content="Mayck Santos | Desenvolvedor Full Stack">
+  <meta property="og:description" content="Engenharia da Computação • Java • React • Web Design.">
+  <!-- Para a imagem funcionar, salve um print do site como 'og-image.png' na pasta public -->
+  <meta property="og:image" content="https://mayck-eduardo.web.app/og-image.png">
+
+  <!-- Fonte -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+
+<body>
+
+  <!-- 1. PRELOADER (Tela de Carregamento) -->
+  <div class="preloader">
+    <div class="preloader-text">
+      <span>MAYCK</span>
+      <span>SANTOS</span>
+      <span>©2025</span>
+    </div>
+  </div>
+
+  <!-- 2. CURSOR -->
+  <div class="cursor"></div>
+
+  <!-- 3. IMAGEM PREVIEW ÚNICA -->
+  <img src="" class="hover-img" alt="Project Preview">
+
+  <div class="content">
+
+    <header>
+      <div class="top-bar">
+        <span>ENGENHARIA DA COMPUTAÇÃO</span>
+        <span>VOTUPORANGA - SP</span>
+      </div>
+      <div class="hero-main">
+        <h1 class="reveal">MAYCK<br>SANTOS</h1>
+        <!-- Adicionei o toque pessoal aqui -->
+        <p class="reveal">Dev Full Stack • Web Designer • Músico</p>
+      </div>
+    </header>
+
+    <!-- MARQUEE -->
+    <div class="marquee-container">
+      <div class="marquee-content">
+        JAVA • PYTHON • REACT NATIVE • HTML5 • CSS3 • MYSQL • WORDPRESS • VIOLINO & GUITARRA •
+        JAVA • PYTHON • REACT NATIVE • HTML5 • CSS3 • MYSQL • WORDPRESS • VIOLINO & GUITARRA •
+      </div>
+    </div>
+
+    <!-- EXPERIÊNCIA -->
+    <section class="experience">
+      <div class="label">EXPERIÊNCIA PROFISSIONAL</div>
+      <div class="project-row no-hover">
+        <div class="p-info">
+          <h2>GD VIRTUAL</h2>
+          <p>Web Design & Manutenção</p>
+        </div>
+        <div class="p-year">ATUAL</div>
+      </div>
+    </section>
+
+    <!-- FORMAÇÃO -->
+    <section class="education">
+      <div class="label">FORMAÇÃO ACADÊMICA</div>
+
+      <div class="edu-item">
+        <span class="year">2025 - PRESENTE</span>
+        <div class="details">
+          <h3>Engenharia da Computação</h3>
+          <p>UNIFEV - Centro Universitário de Votuporanga</p>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <span class="year">2023 - 2024</span>
+        <div class="details">
+          <h3>Técnico em Desenv. de Sistemas</h3>
+          <p>SENAI</p>
+        </div>
+      </div>
+
+      <div class="edu-extra">
+        <h4>CERTIFICAÇÕES:</h4>
+        <p>Java Foundations (Oracle) • Power BI (Senac) • Azure AZ-900 (Microsoft) • Cybersecurity (Cisco)</p>
+      </div>
+    </section>
+
+    <!-- PROJETOS -->
+    <section class="work">
+      <div class="label">PROJETOS DE CÓDIGO</div>
+      
+      <!-- 2. O SITE "SECRET PROJECT" (Link para a página wip.html) -->
+      <!-- Note que o link é apenas "/wip" por causa do cleanUrls do Firebase -->
+      <a href="/wip" class="project-row hover-trigger"
+      data-image="https://placehold.co/600x400/333/FFF?text=Secret+Project">
+      <div class="p-info">
+        <h2>NEXT LEVEL</h2>
+        <p>Em desenvolvimento (Sneak Peek)</p>
+      </div>
+      <div class="p-year">EM BREVE</div>
+    </a>
+    
+    <!-- 1. O PRÓPRIO PORTFÓLIO (Meta-projeto) -->
+    <a href="https://github.com/Mayck-E" target="_blank" class="project-row hover-trigger"
+      data-image="https://placehold.co/600x400/0a0a0a/FFF?text=Este+Portfolio">
+      <div class="p-info">
+        <h2>MEU PORTFÓLIO</h2>
+        <p>Vite + GSAP + TypeScript (Alta Performance)</p>
+      </div>
+      <div class="p-year">2025</div>
+    </a>
+
+      <!-- Projeto 1: EvoFit -->
+      <a href="https://github.com/mayck-eduardo/EvoFit" target="_blank" class="project-row hover-trigger"
+        data-image="/app.jpeg">
+        <div class="p-info">
+          <h2>EVOFIT</h2>
+          <p>React Native App (Gestão de Treinos)</p>
+        </div>
+        <div class="p-year">2025</div>
+      </a>
+
+      <!-- Projeto 2: Estoque -->
+      <a href="https://github.com/Mayck-E/PHP_estoque" target="_blank" class="project-row hover-trigger"
+        data-image="/estoque.png">
+        <!-- Certifique-se de ter estoque.png na pasta public -->
+        <div class="p-info">
+          <h2>SISTEMA DE ESTOQUE</h2>
+          <p>PHP + MySQL (Controle de entrada e saída)</p>
+        </div>
+        <div class="p-year">2024</div>
+      </a>
+
+      <!-- Projeto 3: Station Magic -->
+      <a href="https://station-magic.netlify.app" target="_blank" class="project-row hover-trigger"
+        data-image="https://placehold.co/600x400/10b981/FFF?text=Station+Magic">
+        <!-- Certifique-se de ter station.png na pasta public -->
+        <div class="p-info">
+          <h2>STATION MAGIC</h2>
+          <p>Front-end Development</p>
+        </div>
+        <div class="p-year">2023</div>
+      </a>
+    </section>
+
+
+    <footer>
+      <div class="contact">
+        <h2>VAMOS CONVERSAR?</h2>
+        <a href="mailto:mayck22.03@hotmail.com">mayck22.03@hotmail.com</a>
+        <div class="links">
+          <a href="https://www.linkedin.com/in/mayck-santos-773a68264" target="_blank">LinkedIn</a>
+          <a href="https://github.com/Mayck-E" target="_blank">GitHub</a>
+        </div>
+        <p style="margin-top: 2rem; opacity: 0.3; font-size: 0.8rem;">Soli Deo Gloria</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
