@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Mayck Santos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #0a0a0a; --text: #e1e1e1; --accent: #3b82f6; --font: 'Space Grotesk', sans-serif; }
+        body { background: var(--bg); color: var(--text); font-family: var(--font); margin: 0; padding: 0; min-height: 100vh; }
+        a { text-decoration: none; color: inherit; }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
+        
+        /* Header */
+        header { margin-bottom: 4rem; border-bottom: 1px solid #222; padding-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
+        h1 { font-size: 3rem; margin: 0; line-height: 1; }
+        .back-link { font-size: 0.9rem; opacity: 0.6; transition: 0.3s; }
+        .back-link:hover { opacity: 1; color: var(--accent); }
+
+        /* Lista de Posts */
+        .post-list { display: flex; flex-direction: column; gap: 2rem; }
+        
+        .post-card { 
+            padding: 2rem; 
+            border: 1px solid #222; 
+            border-radius: 8px; 
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: #0f0f0f;
+        }
+        .post-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+
+        .post-meta { font-size: 0.8rem; color: var(--accent); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .post-title { font-size: 1.8rem; margin: 0 0 1rem 0; }
+        .post-excerpt { opacity: 0.7; line-height: 1.6; font-size: 1rem; }
+        
+        /* Footer */
+        footer { margin-top: 4rem; text-align: center; opacity: 0.4; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>INSIGHTS</h1>
+            <a href="/" class="back-link">← Voltar</a>
+        </header>
+
+        <!-- AQUI OS POSTS SERÃO INSERIDOS PELO JS -->
+        <div class="post-list" id="feed"></div>
+
+        <footer>
+            © 2025 Mayck Santos • Soli Deo Gloria
+        </footer>
+    </div>
+
+    <script>
+        // SEUS POSTS FICAM AQUI (Mais fácil de editar)
+        const posts = [
+            {
+                category: "Engenharia",
+                date: "19 DEZ 2025",
+                title: "O futuro da Computação com IA",
+                desc: "Como a inteligência artificial está moldando a grade curricular e o mercado para novos engenheiros.",
+                link: "#" // Coloque o link real depois
+            },
+            {
+                category: "Dev & Música",
+                date: "10 DEZ 2025",
+                title: "Ritmo e Código: O que a Guitarra me ensinou",
+                desc: "A disciplina de estudar escalas musicais e como isso se aplica à lógica de programação e algoritmos.",
+                link: "#"
+            },
+            {
+                category: "Carreira",
+                date: "05 DEZ 2025",
+                title: "Minha jornada no SENAI e UNIFEV",
+                desc: "Relato sobre a transição do curso técnico para a graduação em Engenharia.",
+                link: "#"
+            }
+        ];
+
+        // Lógica para desenhar os posts na tela
+        const feed = document.getElementById('feed');
+        
+        posts.forEach(post => {
+            const article = document.createElement('article');
+            article.className = 'post-card';
+            article.onclick = () => window.location.href = post.link; // Clica no card todo
+            
+            article.innerHTML = `
+                <div class="post-meta">${post.category} • ${post.date}</div>
+                <h2 class="post-title">${post.title}</h2>
+                <p class="post-excerpt">${post.desc}</p>
+            `;
+            feed.appendChild(article);
+        });
+    </script>
+</body>
+</html>

@@ -7,6 +7,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         wip: resolve(__dirname, 'wip.html'),
+        blog: resolve(__dirname, 'blog.html'), // Adicionado
       },
     },
   },
