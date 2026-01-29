@@ -1,228 +1,683 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Produtos V2 | Giobel Móveis</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-body: #f4f6f8;
+            --bg-card: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --text-meta: #888888;
+            --accent: #0274be;
+            --accent-hover: #005a9e;
+            --border-light: #e5e5e5;
+            --shadow-card: 0 4px 20px rgba(0,0,0,0.04);
+            --shadow-hover: 0 15px 35px rgba(0,0,0,0.1);
+            
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Manrope', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        body.loaded { opacity: 1; }
+
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        /* --- LAYOUT --- */
+        .layout-wrapper {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            background-color: var(--bg-card);
+            border-right: 1px solid var(--border-light);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img { max-width: 140px; margin-bottom: 3rem; }
+
+        .menu-title {
+            font-family: var(--font-heading); font-size: 0.75rem; text-transform: uppercase;
+            letter-spacing: 1.5px; color: #aaa; margin-bottom: 1rem; font-weight: 700;
+        }
+
+        /* Botões de Filtro da Sidebar */
+        .filter-btn {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; text-align: left; background: none; border: none;
+            font-family: var(--font-body); font-size: 0.95rem; color: var(--text-secondary);
+            padding: 12px 15px; margin-bottom: 5px; cursor: pointer;
+            border-radius: 8px; transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover { background-color: #f0f7fc; color: var(--accent); }
+        .filter-btn.active { background-color: var(--accent); color: white; font-weight: 600; box-shadow: 0 4px 12px rgba(2, 116, 190, 0.25); }
+        
+        .filter-count { font-size: 0.75rem; opacity: 0.7; }
+        .filter-btn.active .filter-count { opacity: 1; color: white; }
+
+        .sidebar-footer { margin-top: auto; font-size: 0.8rem; color: #ccc; border-top: 1px solid var(--border-light); padding-top: 1.5rem; }
+
+        /* --- CONTEÚDO PRINCIPAL --- */
+        .main-content { padding: 0; }
+
+        .page-header {
+            padding: 5rem 5% 3rem;
+            background: #fff;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .page-title {
+            font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700;
+            color: var(--text-primary); margin-bottom: 5px; line-height: 1.1;
+        }
+        .page-subtitle { color: var(--text-secondary); font-size: 1rem; }
+
+        /* --- GRID DESIGN (Alterado conforme solicitado) --- */
+        .catalog-section { padding: 3rem 5%; }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        /* O Novo Card */
+        .product-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex; flex-direction: column;
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(2, 116, 190, 0.15);
+        }
+
+        /* Área da Imagem */
+        .card-image-box {
+            width: 100%;
+            height: 260px;
+            background-color: #fafafa;
+            display: flex; align-items: center; justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image-box img {
+            max-width: 100%; max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.6s ease;
+            mix-blend-mode: multiply; /* Mescla fundos brancos */
+        }
+
+        .product-card:hover .card-image-box img { transform: scale(1.08); }
+
+        /* Badge de Categoria */
+        .category-badge {
+            position: absolute; top: 15px; left: 15px;
+            background: rgba(255,255,255,0.95); padding: 5px 12px;
+            border-radius: 30px; font-size: 0.7rem; font-weight: 700;
+            color: var(--accent); box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-transform: uppercase; letter-spacing: 0.5px;
+            z-index: 2;
+        }
+
+        /* Área de Conteúdo */
+        .card-content {
+            padding: 24px;
+            display: flex; flex-direction: column; flex-grow: 1;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .card-meta {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
+        }
+
+        .product-code {
+            font-size: 0.75rem; font-weight: 700; color: #999;
+            background: #f5f5f5; padding: 2px 6px; border-radius: 4px;
+        }
+
+        .product-title {
+            font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700;
+            color: var(--text-primary); margin-bottom: 10px; line-height: 1.3;
+        }
+
+        .product-desc {
+            font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;
+            line-height: 1.6; font-weight: 400;
+        }
+
+        .card-footer {
+            margin-top: auto; display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .btn-details {
+            font-size: 0.85rem; font-weight: 700; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 0.5px;
+            display: flex; align-items: center; gap: 6px; transition: 0.3s;
+        }
+        
+        .product-card:hover .btn-details { color: var(--accent-hover); gap: 10px; }
+
+        /* Mobile */
+        .mobile-header { display: none; padding: 15px 20px; background: white; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 200; }
+        .mobile-toggle { font-size: 1.5rem; color: var(--text-primary); cursor: pointer; }
+
+        @media (max-width: 900px) {
+            .layout-wrapper { grid-template-columns: 1fr; }
+            .sidebar { position: fixed; left: -100%; width: 280px; box-shadow: 10px 0 30px rgba(0,0,0,0.1); }
+            .sidebar.active { left: 0; }
+            .mobile-header { display: flex; }
+            .page-header { padding: 3rem 5%; }
+            .card-image-box { height: 220px; }
+        }
+    </style>
 </head>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700&display=swap');
-
-    #smooth-wrapper {
-        font-family: 'Unbounded', sans-serif;
-    }
-
-    .pin-spacer {
-        pointer-events: none;
-    }
-
-    :root {
-        --f-5-min: 30;
-        --f-5-max: 120;
-        --step-5: calc(((var(--f-5-min) / 16) * 1rem) + (var(--f-5-max) - var(--f-5-min)) * var(--fluid-bp));
-    }
-
-    header {
-        padding: 1.5rem;
-        display: flex;
-        border-bottom: 2px solid grey;
-        background-color: var(--dark);
-    }
-
-    button {
-        cursor: pointer;
-    }
-
-    button:hover {
-        background: var(--purple);
-        background-image: none;
-    }
-
-    .hero {
-        min-height: 100vh;
-    }
-
-    .logo {
-        width: 150px;
-        max-width: 40vw;
-        filter: invert(1);
-    }
-
-    nav {
-        margin-left: auto;
-    }
-
-    ul {
-        display: flex;
-        list-style: none;
-    }
-
-    li+li {
-        padding-left: 1rem;
-    }
-
-    a {
-        color: white;
-    }
-
-    h1 {
-        position: relative;
-        font-size: var(--step-5);
-        text-transform: uppercase;
-        text-align: center;
-    }
-
-    .images {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        align-items: stretch;
-        justify-items: center;
-        margin-top: 2rem;
-    }
-
-    img {
-        max-width: 100%;
-        height: 60vh;
-        object-fit: cover;
-    }
-
-    .spacer {
-        height: 100vh
-    }
-
-    .clamp {
-        position: relative;
-        z-index: -1
-    }
-
-    .yt {
-        z-index: 3
-    }
-
-    .clamp svg {
-        position: absolute;
-        width: 112%;
-        top: 0;
-        top: 50%;
-        transform: translateY(-50%) rotate(2deg);
-        left: -6%;
-    }
-
-    .heading {
-        position: relative;
-        z-index: 2;
-        mix-blend-mode: difference;
-        perspective: 1000px;
-        -webkit-backface-visibility: visible;
-        backface-visibility: visible;
-        transform: rotate(0.1deg);
-    }
-
-    .images {
-        z-index: -1
-    }
-
-    .logo svg {
-        opacity: 0
-    }
-</style>
-
 <body>
-<div id="smooth-wrapper">
-  <div id="smooth-content">
-    <header>
-      <div class="logo">
-        <svg viewBox="0 0 370 100.34">
-          <g xmlns="http://www.w3.org/2000/svg" fill="#111" transform="matrix(.34923 0 0 .34923 -2.282 -2.195)">
-            <defs>
-              <path id="a" d="M7 6.5h286v287.1H7z" />
-            </defs>
-            <clipPath id="b">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#a" overflow="visible" />
-            </clipPath>
-            <g style="clip-path:url(#b)">
-              <path d="M150 198.8c26.1 0 47.2 21.2 47.2 47.4s-21.1 47.4-47.2 47.4-47.2-21.2-47.2-47.4 21.1-47.4 47.2-47.4zM198.7 152.9c-.1-1.1-.1-2.2-.1-3.3.1-12.4-4.5-24.4-13.3-33.2l-2-2c-8.7-8.7-20.5-13.4-32.8-13.3h-1.4c-12.3-.2-24.1 4.6-32.8 13.3l-2 2c-8.8 8.8-13.3 20.8-13.3 33.2 0 1.1 0 2.2-.1 3.3-1.3 23.3-19.8 42.4-43.1 44.3-29.3 2.5-53.5-21.9-51.1-51.3 1.9-23.3 21-41.8 44.1-43.2 1-.1 2.2-.1 3.2-.1 12.4.1 24.3-4.5 33.1-13.3l2-2c8.8-8.8 13.3-20.8 13.3-33.2 0-1.6.1-3.3.2-4.9 2.1-22.9 20.8-41.1 43.7-42.8C174 4.5 197 26.4 197 53.6v.7c-.2 12.3 4.6 24.2 13.3 32.9l2 2c8.8 8.8 20.7 13.4 33.1 13.3 1 0 2.1 0 3.2.1 23.3 1.3 42.2 19.9 44.1 43.2 2.5 29.4-21.8 53.7-51.1 51.3-23.1-1.8-41.5-21-42.9-44.2z" />
-            </g>
-          </g>
-          <path fill="#111" d="m154.366 61.651 6.506 5.865c-4.307 4.766-10.447 6.873-17.32 6.873C130.539 74.39 120 64.4 120 50.93s10.539-23.552 23.552-23.552c6.873 0 13.013 2.108 17.32 6.873l-6.506 5.865c-2.658-3.574-6.507-4.949-10.814-4.949-7.79 0-14.113 6.507-14.113 15.763 0 9.164 6.323 15.762 14.113 15.762 4.307 0 8.156-1.374 10.814-5.04zM180.484 3v70.473h-9.53V3h9.53zm33.083 24.285c13.013 0 18.237 7.881 18.237 14.571v31.617h-9.44v-4.949c-3.299 4.49-9.164 5.774-12.83 5.774-10.355 0-17.137-6.049-17.137-14.113 0-11.272 8.431-15.304 17.137-15.304h12.83v-3.025c0-2.84-1.1-6.781-8.797-6.781-4.307 0-8.248 2.29-10.814 5.865l-6.507-5.865c4.308-4.766 10.448-7.79 17.32-7.79zm8.797 32.075v-6.782h-11.547c-5.59 0-9.53 2.841-8.889 7.973.55 4.308 4.032 6.049 8.89 6.049 8.705 0 11.546-4.124 11.546-7.24zm61.492-12.005v26.118h-9.53l.091-.367V48.271c0-9.164-2.383-13.196-10.172-13.196-8.798 0-11.914 6.14-11.914 14.113v24.285h-9.439V28.202h9.44v7.331c1.282-4.032 6.506-7.698 11.913-8.065 8.89-.641 15.212 2.292 18.053 9.623 1.925-6.232 8.065-9.256 13.38-9.623 12.28-.916 19.612 5.04 19.612 19.887v26.118h-9.44V48.27c0-9.164-2.382-13.196-10.172-13.196-7.881 0-11.18 4.948-11.822 12.28zM370 50.929c0 13.471-9.714 23.46-22.727 23.46-4.4 0-9.99-1.833-13.013-4.307v26.76h-9.44v-68.64h9.44v3.574c3.574-2.75 8.614-4.4 13.013-4.4C360.286 27.377 370 37.458 370 50.93zm-9.53 0c0-9.256-6.324-15.763-14.114-15.763-5.132 0-9.622 2.291-12.096 7.24-1.192 2.475-1.925 5.407-1.925 8.523s.733 6.048 1.925 8.523c2.474 4.857 6.964 7.24 12.096 7.24 7.79 0 14.113-6.599 14.113-15.763z" />
-        </svg>
-      </div>
-      <nav>
-        <ul role="list">
-          <li><a href="https://greensock.com/forums/topic/36177-scrollsmoother-data-speed-and-firstlast-folds/#comment-183450">about</a></li>
-        </ul>
-      </nav>
-    </header>
 
-    <section class="hero pad-l">
-        <div class="heading">
-          <div class="pin">
-            <h1><span class="clamp">Clamp
-                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 842.14 500">
-                  <path class="draw" d="M336.2,130.05C261.69,118,16.52,122,20.65,244.29c4.17,123,484.3,299.8,734.57,108.37,244-186.65-337.91-311-546.54-268.47" fill="none" stroke="#8486aa" stroke-miterlimit="10" stroke-width="8" />
-                </svg>
-              </span><span class="yt">your triggers</span></h1>
-          </div>
-        </div>
-        <div class="images">
-          <img data-speed="clamp(2.4)" src='https://images.unsplash.com/photo-1530569673472-307dc017a82d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODM2NTUwMDA&ixlib=rb-4.0.3&q=80&w=400' alt=''>
-          <img data-speed="clamp(1.8)" src='https://images.unsplash.com/photo-1439853949127-fa647821eba0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODM2NTQ5Njk&ixlib=rb-4.0.3&q=80&w=400' alt=''>
-          <img data-speed="clamp(2.2)" src='https://images.unsplash.com/photo-1551376347-075b0121a65b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODM2NTQ5MTE&ixlib=rb-4.0.3&q=80&w=400' alt=''>
-          <img data-speed="clamp(1.5)" src='https://images.unsplash.com/photo-1500817487388-039e623edc21?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODM2NTQ5MTE&ixlib=rb-4.0.3&q=80&w=400' alt=''>
-        </div>
-    </section>
+    <div class="mobile-header">
+        <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2025/09/logo2-g-300x90.png" alt="Giobel" style="height: 30px;">
+        <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
+    </div>
 
-    <section class="spacer">
-    </section>
-  </div>
-</div>
+    <div class="layout-wrapper">
+        
+        <aside class="sidebar">
+            <div class="logo desktop-only">
+                <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2025/09/logo2-g-300x90.png" alt="Giobel">
+            </div>
+
+            <nav class="side-menu">
+                <div class="menu-group">
+                    <span class="menu-title">Filtrar por Linha</span>
+                    <button class="filter-btn active" data-filter="all">
+                        Todos <span class="filter-count">27</span>
+                    </button>
+                    <button class="filter-btn" data-filter="mesas">
+                        Mesas <span class="filter-count">12</span>
+                    </button>
+                    <button class="filter-btn" data-filter="armarios">
+                        Armários <span class="filter-count">9</span>
+                    </button>
+                    <button class="filter-btn" data-filter="cadeiras">
+                        Cadeiras <span class="filter-count">6</span>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                &copy; 2026 Giobel.
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="page-header">
+                <h1 class="page-title reveal-text">Produtos</h1>
+                <p class="page-subtitle reveal-text">Catálogo completo de Mesas, Armários e Cadeiras.</p>
+            </header>
+
+            <section class="catalog-section">
+                <div class="products-grid" id="grid-container">
+
+                    <article class="product-card item" data-category="mesas">
+                        <div class="card-image-box">
+                            <span class="category-badge">Mesas</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2025/12/premium-40mm-mesas-c-tampo-de-vidro-1-e1768306405246.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="product-title">Linha Premium 40mm</h3>
+                            <p class="product-desc">Mesas executivas com tampo de vidro e acabamento refinado.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Mais <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="mesas">
+                        <div class="card-image-box">
+                            <span class="category-badge">Mesas</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2026/01/essence-e1768308108661.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="product-title">Linha Essence 40mm</h3>
+                            <p class="product-desc">Mobiliário robusto e elegante para diretoria.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Mais <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="mesas">
+                        <div class="card-image-box">
+                            <span class="category-badge">Mesas</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2025/11/EVOLUTION-1-e1768307442718.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="product-title">Linha Evolution 40mm</h3>
+                            <p class="product-desc">Estações operacionais modernas e funcionais.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Mais <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="mesas">
+                        <div class="card-image-box">
+                            <span class="category-badge">Mesas</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2025/11/work-e1768307423711.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="product-title">Linha Work 40mm</h3>
+                            <p class="product-desc">Soluções gerenciais com durabilidade superior.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Mais <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="mesas">
+                        <div class="card-image-box">
+                            <span class="category-badge">Mesas</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2025/11/work-25mm-1-e1768308422347.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="product-title">Linha Work 25mm</h3>
+                            <p class="product-desc">Versatilidade e custo-benefício para escritórios.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Mais <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="mesas">
+                        <div class="card-image-box">
+                            <span class="category-badge">Mesas</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2025/11/suprema-40mm-e1768246718974.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="product-title">Linha Suprema 40mm</h3>
+                            <p class="product-desc">Design clássico e imponente para ambientes executivos.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Mais <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="mesas">
+                        <div class="card-image-box">
+                            <span class="category-badge">Mesas</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2025/11/corporativa-40mm-e1768306466124.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="product-title">Linha Corporativa 40mm</h3>
+                            <p class="product-desc">Mesas de reunião e estações de trabalho robustas.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Mais <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="mesas">
+                        <div class="card-image-box">
+                            <span class="category-badge">Mesas</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2025/11/corporativa-25mm-e1768247731462.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="product-title">Linha Corporativa 25mm</h3>
+                            <p class="product-desc">Soluções inteligentes para otimização de espaço.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Mais <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="mesas">
+                        <div class="card-image-box">
+                            <span class="category-badge">Mesas</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2025/11/maxxi-25mm-1-e1768249859299.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="product-title">Linha Maxxi 25mm</h3>
+                            <p class="product-desc">Linha econômica com qualidade e durabilidade.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Mais <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="mesas">
+                        <div class="card-image-box">
+                            <span class="category-badge">Mesas</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2025/11/slin-quadros-22mm-1-e1767897163304.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="product-title">Linha Slin Quadros</h3>
+                            <p class="product-desc">Design minimalista com estruturas metálicas.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Mais <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="mesas">
+                        <div class="card-image-box">
+                            <span class="category-badge">Mesas</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2025/11/delta-studio-25mm-e1768308542172.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="product-title">Linha Delta Studio</h3>
+                            <p class="product-desc">Estações de trabalho com foco em privacidade.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Mais <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="mesas">
+                        <div class="card-image-box">
+                            <span class="category-badge">Mesas</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2025/11/studio-25mm-e1768248642483.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="product-title">Linha Studio 25mm</h3>
+                            <p class="product-desc">Mobiliário versátil para diversos layouts.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Mais <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="armarios">
+                        <div class="card-image-box">
+                            <span class="category-badge">Armários</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2026/01/armarios-e1768823845608.jpg">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta"><span class="product-code">CÓD: 29.002.2</span></div>
+                            <h3 class="product-title">Armário Premium Deslizante</h3>
+                            <p class="product-desc">2,05m x 0,68m. Portas deslizantes, gavetas e nichos.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Detalhes <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="armarios">
+                        <div class="card-image-box">
+                            <span class="category-badge">Armários</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2026/01/armarios-2-2.jpg">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta"><span class="product-code">CÓD: 18.003.3</span></div>
+                            <h3 class="product-title">Balcão Evolution Esquerdo</h3>
+                            <p class="product-desc">1,86m. 3 portas, 3 gavetas. Puxador Loft. 40mm.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Detalhes <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="armarios">
+                        <div class="card-image-box">
+                            <span class="category-badge">Armários</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2026/01/armarios-2-1-e1768831754213.jpg">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta"><span class="product-code">CÓD: 18.003.1</span></div>
+                            <h3 class="product-title">Balcão Evolution Direito</h3>
+                            <p class="product-desc">1,86m. 3 portas, 3 gavetas. Puxador Loft. 40mm.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Detalhes <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="armarios">
+                        <div class="card-image-box">
+                            <span class="category-badge">Armários</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2026/01/armarios-1-2.jpg">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta"><span class="product-code">CÓD: 70.05</span></div>
+                            <h3 class="product-title">Armário Work 25mm</h3>
+                            <p class="product-desc">1,80m. 4 gavetas e 2 portas. Tampo 25mm.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Detalhes <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="armarios">
+                        <div class="card-image-box">
+                            <span class="category-badge">Armários</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2026/01/armarios-3-1-e1768840640896.jpg">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta"><span class="product-code">CÓD: 70.08</span></div>
+                            <h3 class="product-title">Armário Work Longo</h3>
+                            <p class="product-desc">2,15m. 4 gavetas e 4 portas. Tampo 25mm.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Detalhes <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="armarios">
+                        <div class="card-image-box">
+                            <span class="category-badge">Armários</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2026/01/img00119-928x1024.jpg">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta"><span class="product-code">CÓD: 29.003.0</span></div>
+                            <h3 class="product-title">Armário Premium Nicho</h3>
+                            <p class="product-desc">1,80m. Com nicho central. Puxador Cava. 40mm.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Detalhes <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="armarios">
+                        <div class="card-image-box">
+                            <span class="category-badge">Armários</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2026/01/armarios-5-2-e1768847518193.jpg">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta"><span class="product-code">CÓD: 29.002.1</span></div>
+                            <h3 class="product-title">Armário Premium Loft</h3>
+                            <p class="product-desc">1,80m. Nicho central. Puxador Loft. 40mm.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Detalhes <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="armarios">
+                        <div class="card-image-box">
+                            <span class="category-badge">Armários</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2026/01/armario-6-2-e1768849018233.jpg">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta"><span class="product-code">CÓD: 13.008.0</span></div>
+                            <h3 class="product-title">Balcão Suprema</h3>
+                            <p class="product-desc">1,60m. 2 portas, 3 gavetas. Clássico 25mm.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Detalhes <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="armarios">
+                        <div class="card-image-box">
+                            <span class="category-badge">Armários</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2026/01/armario-8-2-e1768849534419.jpg">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta"><span class="product-code">CÓD: 29.002.1</span></div>
+                            <h3 class="product-title">Armário Premium Baixo</h3>
+                            <p class="product-desc">1,80m. Nicho central. 40mm.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Detalhes <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+
+                    <article class="product-card item" data-category="cadeiras">
+                        <div class="card-image-box">
+                            <span class="category-badge">Cadeiras</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2026/01/cadeira-luna-1-e1769002139445-577x1024.jpg">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta"><span class="product-code">CÓD: 5.213</span></div>
+                            <h3 class="product-title">Luna Presidente Cromada</h3>
+                            <p class="product-desc">Base cromada, braço alumínio, sistema relax.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Detalhes <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="cadeiras">
+                        <div class="card-image-box">
+                            <span class="category-badge">Cadeiras</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2026/01/cadeira-luna-5-e1769002225225-575x1024.jpg">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta"><span class="product-code">CÓD: 5.214</span></div>
+                            <h3 class="product-title">Luna Presidente Preta</h3>
+                            <p class="product-desc">Base preta, braço preto, sistema relax.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Detalhes <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="cadeiras">
+                        <div class="card-image-box">
+                            <span class="category-badge">Cadeiras</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2026/01/cadeira-luna-2-e1768940911479-575x1024.jpg">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta"><span class="product-code">CÓD: 5.215</span></div>
+                            <h3 class="product-title">Luna Diretor Cromada</h3>
+                            <p class="product-desc">Base cromada, braço alumínio, sistema relax.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Detalhes <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="cadeiras">
+                        <div class="card-image-box">
+                            <span class="category-badge">Cadeiras</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2026/01/cadeira-luna-6-e1768940963133-576x1024.jpg">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta"><span class="product-code">CÓD: 5.216</span></div>
+                            <h3 class="product-title">Luna Diretor Preta</h3>
+                            <p class="product-desc">Base preta, braço preto, sistema relax.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Detalhes <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="cadeiras">
+                        <div class="card-image-box">
+                            <span class="category-badge">Cadeiras</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2026/01/cadeira-luna-3-e1768941012420-575x1024.jpg">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta"><span class="product-code">CÓD: 5.217</span></div>
+                            <h3 class="product-title">Luna Interlocutor Cromada</h3>
+                            <p class="product-desc">Base SKI cromada e braço alumínio.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Detalhes <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                    <article class="product-card item" data-category="cadeiras">
+                        <div class="card-image-box">
+                            <span class="category-badge">Cadeiras</span>
+                            <img src="https://giobel.aprovasite.com.br/wp-content/uploads/2026/01/cadeira-luna-4-e1768941074859-575x1024.jpg">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta"><span class="product-code">CÓD: 5.218</span></div>
+                            <h3 class="product-title">Luna Interlocutor Preta</h3>
+                            <p class="product-desc">Base SKI preta e braço preto.</p>
+                            <div class="card-footer"><span class="btn-details">Ver Detalhes <i class="fas fa-arrow-right"></i></span></div>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+    <script>
+        // Init Scripts
+        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smooth: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Animação de Entrada
+            gsap.from(".reveal-text", { y: 30, opacity: 0, duration: 1, stagger: 0.1, ease: "power3.out" });
+            animateItems(); // Anima os cards iniciais
+
+            // Filtro de Categorias
+            const filterBtns = document.querySelectorAll('.filter-btn[data-filter]');
+            const items = document.querySelectorAll('.item');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    // Anima Saída
+                    const tl = gsap.timeline({
+                        onComplete: () => {
+                            items.forEach(item => {
+                                if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                                    item.style.display = 'flex';
+                                } else {
+                                    item.style.display = 'none';
+                                }
+                            });
+                            ScrollTrigger.refresh();
+                            animateItems(); // Anima Entrada
+                        }
+                    });
+
+                    tl.to(items, { opacity: 0, y: 20, duration: 0.2, ease: "power2.in" });
+                });
+            });
+        });
+
+        function animateItems() {
+            const visibleItems = document.querySelectorAll('.item[style="display: flex;"], .item:not([style*="display"])');
+            gsap.fromTo(visibleItems, 
+                { y: 50, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.6, stagger: 0.05, ease: "power3.out", clearProps: "transform" }
+            );
+        }
+
+        // Mobile Menu
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.createElement('div');
+        overlay.style.cssText = "position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:99; opacity:0; visibility:hidden; transition:0.3s;";
+        document.body.appendChild(overlay);
+
+        function toggleMenu() {
+            sidebar.classList.toggle('active');
+            if(sidebar.classList.contains('active')) {
+                overlay.style.visibility = 'visible'; overlay.style.opacity = '1';
+            } else {
+                overlay.style.visibility = 'hidden'; overlay.style.opacity = '0';
+            }
+        }
+        mobileToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+    </script>
 </body>
-
-<script>
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
-let smoother = ScrollSmoother.create({
-  smooth: 2, 
-  effects: true
-});
-
-gsap.from('.draw', {
-  drawSVG: "0%",
-  ease: "expo.out",
-  scrollTrigger: {
-    trigger: '.heading',
-    start: "clamp(top center)",
-    scrub: true,
-    pin: '.pin',
-    pinSpacing: false,
-    markers:true,
-  }
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// little setup - ignore
-gsap.set(".logo svg", {opacity: 1})
-
-
-// 💚 This just adds the GSAP link to this pen, don't copy this bit
-import { GSAPInfoBar } from "https://codepen.io/GreenSock/pen/vYqpyLg.js"
-new GSAPInfoBar({ link: "https://gsap.com/docs/v3/Plugins/ScrollSmoother/"});
-// 💚 Happy tweening!
-</script>
 </html>
