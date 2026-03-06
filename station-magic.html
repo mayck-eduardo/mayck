@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Station Magic | Mayck Santos</title>
+  <meta name="description" content="Station Magic - Site de jogos criado no curso de Desenvolvimento de Sistemas no Senai por Mayck Santos.">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+  
+  <style>
+    /* Estilos estendidos da página de projetos */
+    .project-header {
+      padding: 4rem 0 2rem 0;
+      border-bottom: 1px solid var(--border-medium);
+      margin-bottom: 4rem;
+    }
+    
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      opacity: 0.6;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: opacity 0.3s ease;
+    }
+    
+    .back-btn:hover {
+      opacity: 1;
+      color: var(--accent);
+    }
+    
+    .project-title h1 {
+      font-size: clamp(3rem, 6vw, 5rem);
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    
+    .project-subtitle {
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+    
+    .project-meta {
+      display: flex;
+      gap: 2rem;
+      opacity: 0.8;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+    
+    .content-article {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .content-article h2 {
+      font-size: 2rem;
+      margin: 3rem 0 1.5rem 0;
+    }
+    
+    .content-article p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+    
+    .content-article ul {
+      margin-left: 2rem;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+      opacity: 0.8;
+    }
+    
+    .content-article li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .project-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+    
+    .project-gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border-light);
+    }
+
+    .action-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 4rem 0;
+    }
+
+    .action-btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border-medium);
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .action-btn:hover {
+      background: #fff;
+      color: #000;
+    }
+    
+    .action-btn.primary {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+    }
+    
+    .action-btn.primary:hover {
+      background: #2563eb;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div class="cursor"></div>
+
+  <div class="content">
+    
+    <!-- Cabeçalho do Projeto -->
+    <header class="project-header">
+      <a href="./" class="back-btn">← Voltar para Home</a>
+      
+      <div class="project-title reveal">
+        <h1>STATION MAGIC</h1>
+        <p class="project-subtitle">Ambiente de Jogos focado em Web Design (Projeto Senai)</p>
+        
+        <div class="project-meta">
+          <span>ANO: 2023</span>
+          <span>PLATAFORMA: Web / Browser</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <article class="content-article reveal">
+      
+      <h2>Sobre o Projeto</h2>
+      <p>
+        O <strong>Station Magic</strong> foi um dos meus primeiros grandes desafios de front-end, desenvolvido durante o curso de Técnico em Desenvolvimento de Sistemas no <strong>SENAI Votuporanga</strong>, SP. A ideia conceitual era arquitetar uma plataforma de jogos imersiva, com paleta de cores envolventes, aplicando fundamentalmente HTML estruturado e folhas de estilo refinadas.
+      </p>
+      <p>
+        Por tratar-se de um projeto acadêmico de descoberta, meu objetivo principal foi o mapeamento de classes, posicionamento de FlexBox e CSS Grid, além da criação de um layout consistente e divertido para o usuário voltado à temática interativa.
+      </p>
+      
+      <div class="skills-card" style="margin: 3rem 0;">
+        <h4>Tecnologias Utilizadas</h4>
+        <div class="tags">
+          <span>HTML5 (Semântico)</span>
+          <span>CSS3 (Vanilla Animations)</span>
+          <span>JavaScript</span>
+          <span>Figma (UI/UX)</span>
+        </div>
+      </div>
+
+      <h2>Destaques Técnicos</h2>
+      <ul>
+        <li><strong>Navegação Guiada:</strong> Construção de menus pegajosos (sticky) e fluxos horizontais para os carrosséis de jogo.</li>
+        <li><strong>Foco em Design UI:</strong> Utilização da teoria das cores com tons verdes luminosos (`#10b981`) de alta conversão adaptados à usabilidade web.</li>
+        <li><strong>Organização Colaborativa:</strong> Documentação e versionamento no repositório final como um squad front-end no laboratório do Senai.</li>
+        <li><strong>Hospedagem PaaS:</strong> Deploy contínuo da aplicação web usando o modelo estático via Netlify.</li>
+      </ul>
+
+      <div class="action-group">
+        <a href="https://station-magic.netlify.app" target="_blank" rel="noopener noreferrer" class="action-btn primary hover-trigger" data-image="https://placehold.co/600x400/10b981/FFF?text=Jogar+Agora">
+          Acessar o Projeto (Demo) ↗
+        </a>
+        <a href="https://github.com/TDSSV23/STATION-MAGIC" target="_blank" rel="noopener noreferrer" class="action-btn hover-trigger" data-image="https://placehold.co/600x400/0a0a0a/FFF?text=Code">
+          Repositório do Senai →
+        </a>
+      </div>
+
+    </article>
+
+    <footer>
+      <div class="contact">
+        <div class="links">
+          <a href="https://www.linkedin.com/in/mayck-eduardo" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/Mayck-E" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <p style="margin-top: 2rem; opacity: 0.3; font-size: 0.8rem;">Soli Deo Gloria</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

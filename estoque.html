@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Sistema de Estoque | Mayck Santos</title>
+  <meta name="description" content="Sistema de Gerenciamento de Estoque desenvolvido em PHP e MySQL por Mayck Santos.">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+  
+  <style>
+    /* Estilos específicos para a página de projetos */
+    .project-header {
+      padding: 4rem 0 2rem 0;
+      border-bottom: 1px solid var(--border-medium);
+      margin-bottom: 4rem;
+    }
+    
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      opacity: 0.6;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: opacity 0.3s ease;
+    }
+    
+    .back-btn:hover {
+      opacity: 1;
+      color: var(--accent);
+    }
+    
+    .project-title h1 {
+      font-size: clamp(3rem, 6vw, 5rem);
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    
+    .project-subtitle {
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+    
+    .project-meta {
+      display: flex;
+      gap: 2rem;
+      opacity: 0.8;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+    
+    .content-article {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .content-article h2 {
+      font-size: 2rem;
+      margin: 3rem 0 1.5rem 0;
+    }
+    
+    .content-article p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+    
+    .content-article ul {
+      margin-left: 2rem;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+      opacity: 0.8;
+    }
+    
+    .content-article li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .project-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+    
+    .project-gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border-light);
+    }
+
+    .action-btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border-medium);
+      border-radius: 30px;
+      font-weight: 600;
+      margin-top: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .action-btn:hover {
+      background: #fff;
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cursor"></div>
+
+  <div class="content">
+    
+    <header class="project-header">
+      <a href="./" class="back-btn">← Voltar para Home</a>
+      
+      <div class="project-title reveal">
+        <h1>ESTOQUE ZEN</h1>
+        <p class="project-subtitle">Sistema de Gerenciamento de Estoque Completo</p>
+        
+        <div class="project-meta">
+          <span>ANO: 2024</span>
+          <span>PLATAFORMA: Web (Backend/Fullstack)</span>
+        </div>
+      </div>
+    </header>
+
+    <article class="content-article reveal">
+      
+      <h2>Sobre o Projeto</h2>
+      <p>
+        O <strong>EstoqueZen</strong> é um sistema web monólito contruído sob a arquitetura clássica LAMP (com PHP puro e MySQL para persistência). A principal meta do projeto foi construir uma solução local capaz de suportar controle rígido de entradas e saídas (baixas) de produtos, cálculo em tempo real de quantidade total e interface simples para administração de uma loja física.
+      </p>
+      
+      <div class="skills-card" style="margin: 3rem 0;">
+        <h4>Tecnologias Utilizadas</h4>
+        <div class="tags">
+          <span>PHP</span>
+          <span>MySQL (Relacional)</span>
+          <span>HTML5</span>
+          <span>CSS3</span>
+          <span>Apache</span>
+        </div>
+      </div>
+
+      <h2>Funcionalidades Principais</h2>
+      <ul>
+        <li><strong>Sistema de Login/Sessão:</strong> Roteamento protegido onde somente usuários autenticados via sessão do PHP podem acessar a base do estoque.</li>
+        <li><strong>CRUD de Produtos:</strong> Fluxo para adicionar novos SKUs, editar preços de custo e descrição, além da deleção soft ou hard-delete quando viável.</li>
+        <li><strong>Lançamentos e Baixas:</strong> Modalidade segura para retirar e repor produtos afetando o caixa virtual do sistema sem quebrar os índices do banco.</li>
+        <li><strong>Design Responsivo:</strong> Embora o foco seja backend, a aplicação pode ser visualizada tanto via Desktops nos balcões de loja, quanto em painéis de Tablet para conferentes de galpão.</li>
+      </ul>
+
+      <!-- Galeria de Imagens -->
+      <h2>Interface do App</h2>
+      <div class="project-gallery">
+        <!-- Usa a imagem mapeada public/estoque.png -->
+        <img src="/estoque.png" alt="Tela Principal do Sistema de Estoque em PHP">
+      </div>
+
+      <div style="text-align: center; margin: 4rem 0;">
+        <a href="https://github.com/Mayck-E/PHP_estoque" target="_blank" rel="noopener noreferrer" class="action-btn hover-trigger" data-image="/estoque.png">
+          Ver Código no GitHub →
+        </a>
+      </div>
+
+    </article>
+
+    <footer>
+      <div class="contact">
+        <div class="links">
+          <a href="https://www.linkedin.com/in/mayck-eduardo" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/Mayck-E" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <p style="margin-top: 2rem; opacity: 0.3; font-size: 0.8rem;">Soli Deo Gloria</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
