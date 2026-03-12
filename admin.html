@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - Blog | Mayck Santos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css" />
+    <style>
+        .admin-container { max-width: 800px; margin: 4rem auto; padding: 3rem; background: var(--surface); border-radius: 12px; border: 1px solid var(--border-medium); }
+        .auth-panel, .dashboard-panel { display: none; }
+        .auth-panel.active, .dashboard-panel.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* TABS (Melhoria Admin Plus) */
+        .tabs { display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border-medium); padding-bottom: 1rem; }
+        .tab-btn { background: none; border: none; color: var(--text); font-family: var(--font); font-size: 1.1rem; opacity: 0.5; cursor: pointer; transition: 0.3s; padding: 0.5rem 1rem; }
+        .tab-btn:hover { opacity: 0.8; }
+        .tab-btn.active { opacity: 1; border-bottom: 2px solid var(--accent); font-weight: bold; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s; }
+
+        .input-group { margin-bottom: 1.5rem; }
+        .input-group label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; opacity: 0.8; letter-spacing: 1px; text-transform: uppercase; }
+        .input-group input, .input-group textarea { width: 100%; padding: 1rem; background: #000; border: 1px solid var(--border-light); color: #fff; border-radius: 6px; font-family: inherit; font-size: 1rem; outline: none; transition: 0.3s; }
+        .input-group input:focus, .input-group textarea:focus { border-color: var(--accent); }
+
+        .btn-submit { width: 100%; padding: 1.2rem; background: var(--text); color: var(--bg); border: none; border-radius: 6px; font-family: inherit; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-submit:hover { background: var(--accent); color: #fff; }
+        .logout-btn { background: transparent; border: 1px solid var(--border-light); color: var(--text); margin-top: 2rem; }
+        .logout-btn:hover { background: #ff4757; border-color: #ff4757; }
+        
+        .status-msg { margin-top: 1rem; text-align: center; font-size: 0.9rem; }
+        .success { color: #2ed573; }
+        .error { color: #ff4757; }
+
+        /* Lista de Links Compartilhados */
+        .link-item { padding: 1rem; border: 1px solid var(--border-medium); border-radius: 6px; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; background: #0a0a0a; }
+        .link-item-info strong { display: block; margin-bottom: 0.3rem; color: var(--accent); }
+        .link-item-info span { font-size: 0.8rem; opacity: 0.6; }
+        .copy-btn { padding: 0.5rem 1rem; background: var(--border-light); border: none; color: white; border-radius: 4px; cursor: pointer; font-family: inherit; font-size: 0.8rem;}
+        .copy-btn:hover { background: var(--border-medium); }
+            
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <header style="height: auto; padding-bottom: 0;">
+            <a href="/blog" class="back-btn" style="opacity: 0.5;">← Voltar ao Blog (Logado)</a>
+        </header>
+
+        <section class="admin-container">
+            <!-- Painel de Login -->
+            <div id="authPanel" class="auth-panel active">
+                <h2 style="margin-bottom: 2rem; text-align: center;">Acesso Restrito CMS</h2>
+                <form id="loginForm">
+                    <div class="input-group"><label>E-mail (Admin)</label><input type="email" id="txtEmail" placeholder="seu@email.com" required></div>
+                    <div class="input-group"><label>Senha</label><input type="password" id="txtPassword" placeholder="••••••••" required></div>
+                    <button type="submit" class="btn-submit" id="btnLogin">Entrar no Painel</button>
+                    <div id="loginStatus" class="status-msg error"></div>
+                </form>
+            </div>
+
+            <!-- Dashboard Painel Admin Plus -->
+            <div id="dashboardPanel" class="dashboard-panel">
+                
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="openTab('novo-post', this)">Novo Artigo</button>
+                    <button class="tab-btn" onclick="openTab('links-gerados', this); window.fetchSharedLinks();">Links Ativos (24h)</button>
+                </div>
+
+                <!-- TAB: Cadastrar Post -->
+                <div id="novo-post" class="tab-content active">
+                    <h2 style="margin-bottom: 1rem;">Escrever Artigo</h2>
+                    <p style="opacity: 0.5; margin-bottom: 2rem; font-size: 0.9rem;">Esses artigos ficam trancados na rota pública e vão precisar do Share temporário.</p>
+                    
+                    <form id="postForm">
+                        <div class="input-group"><label>Título</label><input type="text" id="postTitle" required></div>
+                        <div class="input-group"><label>Categoria</label><input type="text" id="postCategory" required></div>
+                        <div class="input-group"><label>Resumo Rápido</label><textarea id="postDesc" rows="2" required></textarea></div>
+                        <div class="input-group"><label>Conteúdo Completo (HTML Tags aceitas)</label><textarea id="postContent" rows="8" required></textarea></div>
+                        <button type="submit" class="btn-submit" id="btnPublish">Publicar Oficialmente</button>
+                        <div id="postStatus" class="status-msg"></div>
+                    </form>
+                </div>
+
+                <!-- TAB: Links Expiráveis Gerados -->
+                <div id="links-gerados" class="tab-content">
+                    <h2 style="margin-bottom: 1rem;">Convites Temporários</h2>
+                    <p style="opacity: 0.5; margin-bottom: 2rem; font-size: 0.9rem;">Lista de links que você gerou recentemente para terceiros. Eles expiram sozinhos em 24h.</p>
+                    <div id="sharedList">
+                        <!-- Renderizado via JS -->
+                        <p style="text-align:center; opacity:0.3; margin: 3rem 0;">Buscando convites...</p>
+                    </div>
+                </div>
+
+                <button class="btn-submit logout-btn" id="btnLogout">Sair do Painel CMS</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Script de Tabs Inline -->
+    <script>
+        function openTab(tabId, btnElement) {
+            document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(tb => tb.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            btnElement.classList.add('active');
+        }
+    </script>
+    <!-- Lógica Pesada Firebase -->
+    <script type="module" src="/src/admin.ts"></script>
+</body>
+
+</html>

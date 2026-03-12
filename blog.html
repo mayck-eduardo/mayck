@@ -55,47 +55,7 @@
         </footer>
     </div>
 
-    <script>
-        // SEUS POSTS FICAM AQUI (Mais fácil de editar)
-        const posts = [
-            {
-                category: "Engenharia",
-                date: "19 DEZ 2025",
-                title: "O futuro da Computação com IA",
-                desc: "Como a inteligência artificial está moldando a grade curricular e o mercado para novos engenheiros.",
-                link: "#" // Coloque o link real depois
-            },
-            {
-                category: "Dev & Música",
-                date: "10 DEZ 2025",
-                title: "Ritmo e Código: O que a Guitarra me ensinou",
-                desc: "A disciplina de estudar escalas musicais e como isso se aplica à lógica de programação e algoritmos.",
-                link: "#"
-            },
-            {
-                category: "Carreira",
-                date: "05 DEZ 2025",
-                title: "Minha jornada no SENAI e UNIFEV",
-                desc: "Relato sobre a transição do curso técnico para a graduação em Engenharia.",
-                link: "#"
-            }
-        ];
-
-        // Lógica para desenhar os posts na tela
-        const feed = document.getElementById('feed');
-        
-        posts.forEach(post => {
-            const article = document.createElement('article');
-            article.className = 'post-card';
-            article.onclick = () => window.location.href = post.link; // Clica no card todo
-            
-            article.innerHTML = `
-                <div class="post-meta">${post.category} • ${post.date}</div>
-                <h2 class="post-title">${post.title}</h2>
-                <p class="post-excerpt">${post.desc}</p>
-            `;
-            feed.appendChild(article);
-        });
-    </script>
+    <!-- Importação do Bundle TS -->
+    <script type="module" src="/src/blog.ts"></script>
 </body>
 </html>
