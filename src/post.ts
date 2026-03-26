@@ -1,9 +1,8 @@
 import { auth, db } from "./firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, collection, addDoc, Timestamp } from "firebase/firestore";
-import { initCursor } from "./cursor";
-
-initCursor();
+// Import removido para separação visual: import { initCursor } from "./cursor";
+// initCursor();
 
 const postArticle = document.getElementById("postArticle") as HTMLElement;
 
@@ -35,12 +34,12 @@ async function loadSinglePost(postId: string, isShared: boolean = false) {
 
             // [Visitante ou Logado] - Cria view limpa
             let htmlPayload = `
-                <div class="post-header">
-                    <div class="post-meta">${isShared ? '⭐ ACESSO TEMPORÁRIO | ' : ''}${data.category || 'Geral'} • Publicado em ${dateString}</div>
-                    <h1 class="post-title">${data.title}</h1>
-                    <p class="post-desc">${data.desc}</p>
+                <div class="post-header-area">
+                    <div class="post-article-meta">${isShared ? '⭐ ACESSO TEMPORÁRIO | ' : ''}<span class="category">${data.category || 'Geral'}</span> • Publicado em ${dateString}</div>
+                    <h1 class="post-article-title">${data.title}</h1>
+                    <p class="post-article-desc">${data.desc}</p>
                 </div>
-                <div class="post-body">
+                <div class="post-article-body">
                     ${data.content}
                 </div>
             `;
@@ -48,10 +47,10 @@ async function loadSinglePost(postId: string, isShared: boolean = false) {
             // [Somente Logado] - Se for o Admin vendo o post oficial, mostrar botão de Gerar Link Temporário
             if (!isShared) {
                 htmlPayload += `
-                <div style="margin-top:4rem; padding: 2rem; background: var(--border-dark); border: 1px dashed var(--accent); border-radius: 8px; text-align: center;">
-                    <p style="margin-bottom: 1rem; opacity: 0.8;">Você é o Administrador. Deseja disponibilizar esta página externamente?</p>
-                    <button id="btnGenerateLink" class="btn-submit" style="width:auto; padding: 1rem 2rem;">🔗 GERAR LINK PÚBLICO (Expira em 24h)</button>
-                    <p id="shareStatus" style="color:var(--accent); margin-top:1rem; font-weight:bold;"></p>
+                <div class="blog-admin-panel">
+                    <p style="margin-bottom: 1rem; opacity: 0.8; font-size: 1.1rem;">Você é o Administrador. Deseja disponibilizar esta página externamente?</p>
+                    <button id="btnGenerateLink" class="blog-btn-share">🔗 GERAR LINK PÚBLICO (Expira em 24h)</button>
+                    <p id="shareStatus" style="color:var(--blog-accent); margin-top:1.5rem; font-weight:bold;"></p>
                 </div>
                 `;
             }
@@ -145,4 +144,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Se a pessoa entrou na raiz do /post nua
     postArticle.innerHTML = "<h2 style='text-align:center'>URL Inválida.</h2>";
+
 });
+
+// Scroll Events (Progress Bar e Back-to-top)
+window.addEventListener("scroll", () => {
+    // Cálculo do progresso de leitura
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+    
+    const progressBar = document.getElementById("progressBar");
+    if (progressBar) progressBar.style.width = progress + "%";
+
+    // Mostra/oculta botão Voltar ao Topo (se scrollar mais que 300px)
+    const backBtn = document.getElementById("backToTop");
+    if (backBtn) {
+        if (scrollTop > 300) {
+            backBtn.classList.add("visible");
+        } else {
+            backBtn.classList.remove("visible");
+        }
+    }
+});
+
+// Ação de clique do Voltar ao Topo
+const topBtn = document.getElementById("backToTop");
+if(topBtn) {
+    topBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+}

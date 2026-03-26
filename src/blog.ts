@@ -1,9 +1,8 @@
 import { auth, db } from "./firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, query, orderBy, getDocs } from "firebase/firestore";
-import { initCursor } from "./cursor";
-
-initCursor();
+// Import removido para separação visual: import { initCursor } from "./cursor";
+// initCursor();
 
 // Elementos da DOM
 const feed = document.getElementById("feed") as HTMLElement;
@@ -27,6 +26,7 @@ async function fetchPosts() {
         }
 
         // Loop e Pintura no DOM
+        let delayIndex = 0;
         snapshot.forEach((doc) => {
             const data = doc.data();
             const postId = doc.id; // O ID nativo do objeto no Banco
@@ -43,15 +43,17 @@ async function fetchPosts() {
             }
 
             const article = document.createElement("article");
-            article.className = "post-card";
+            article.className = "blog-post-card";
+            article.style.animationDelay = `${delayIndex * 0.1}s`;
+            delayIndex++;
             
             // Define o clique na URL enviando parâmetro ID pelo GET 
             article.onclick = () => window.location.href = `/post?id=${postId}`;
 
             article.innerHTML = `
-                <div class="post-meta">${data.category || 'Geral'} • ${dateString}</div>
-                <h2 class="post-title">${data.title}</h2>
-                <p class="post-excerpt">${data.desc}</p>
+                <div class="blog-post-meta"><span class="category">${data.category || 'Geral'}</span> • ${dateString}</div>
+                <h2 class="blog-post-title">${data.title}</h2>
+                <p class="blog-post-excerpt">${data.desc}</p>
             `;
 
             feed.appendChild(article);

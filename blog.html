@@ -3,75 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Mayck Santos</title>
+    <title>Insights & Blog | Mayck Santos</title>
     <meta name="description" content="Blog de Mayck Santos - Artigos sobre desenvolvimento, tecnologia e engenharia da computação.">
     <meta name="author" content="Mayck Santos">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://mayck-eduardo.web.app/blog">
-    <meta name="theme-color" content="#0a0a0a">
+    
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mayck-eduardo.web.app/blog">
-    <meta property="og:title" content="Blog | Mayck Santos">
+    <meta property="og:title" content="Insights & Blog | Mayck Santos">
     <meta property="og:description" content="Artigos sobre desenvolvimento, tecnologia e engenharia da computação.">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:site_name" content="Mayck Santos">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Blog | Mayck Santos">
-    <meta name="twitter:description" content="Artigos sobre desenvolvimento, tecnologia e engenharia da computação.">
-
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg: #0a0a0a; --text: #e1e1e1; --accent: #3b82f6; --font: 'Space Grotesk', sans-serif; }
-        body { background: var(--bg); color: var(--text); font-family: var(--font); margin: 0; padding: 0; min-height: 100vh; }
-        a { text-decoration: none; color: inherit; }
-
-        .container { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
-        
-        /* Header */
-        header { margin-bottom: 4rem; border-bottom: 1px solid #222; padding-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
-        h1 { font-size: 3rem; margin: 0; line-height: 1; }
-        .back-link { font-size: 0.9rem; opacity: 0.6; transition: 0.3s; }
-        .back-link:hover { opacity: 1; color: var(--accent); }
-
-        /* Lista de Posts */
-        .post-list { display: flex; flex-direction: column; gap: 2rem; }
-        
-        .post-card { 
-            padding: 2rem; 
-            border: 1px solid #222; 
-            border-radius: 8px; 
-            transition: all 0.3s ease;
-            cursor: pointer;
-            background: #0f0f0f;
-        }
-        .post-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-
-        .post-meta { font-size: 0.8rem; color: var(--accent); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
-        .post-title { font-size: 1.8rem; margin: 0 0 1rem 0; }
-        .post-excerpt { opacity: 0.7; line-height: 1.6; font-size: 1rem; }
-        
-        /* Footer */
-        footer { margin-top: 4rem; text-align: center; opacity: 0.4; font-size: 0.8rem; }
-    </style>
+    <link rel="stylesheet" href="/src/blog.css">
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>INSIGHTS</h1>
-            <a href="/" class="back-link">← Voltar</a>
+    <div class="blog-container">
+        <header class="blog-header">
+            <div class="blog-header-content">
+                <img src="https://github.com/Mayck-E.png" alt="Mayck Santos" class="blog-author-avatar">
+                <div>
+                    <h1>INSIGHTS</h1>
+                    <p class="blog-subtitle">Ideias, códigos e aprendizados por Mayck Santos.</p>
+                </div>
+            </div>
+            <a href="/" class="blog-back-link">← Voltar ao Portfólio</a>
         </header>
 
-        <!-- AQUI OS POSTS SERÃO INSERIDOS PELO JS -->
-        <div class="post-list" id="feed"></div>
+        <main>
+            <!-- AQUI OS POSTS SERÃO INSERIDOS PELO JS -->
+            <div class="blog-post-list" id="feed">
+                <!-- Se for carregar localmente vai aparecer primeiro -->
+                <div class="blog-loading">Carregando artigos selecionados...</div>
+            </div>
+        </main>
 
-        <footer>
-            © 2025 Mayck Santos • Soli Deo Gloria
+        <footer class="blog-footer">
+            © 2026 Mayck Santos • Engenharia & Código Limpo
         </footer>
     </div>
 

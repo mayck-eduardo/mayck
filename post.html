@@ -1,80 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post | Mayck Santos</title>
-    <meta name="description" content="Artigo do blog de Mayck Santos.">
+    <meta name="description" content="Artigo exclusivo no blog de Mayck Santos.">
     <meta name="author" content="Mayck Santos">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#0a0a0a">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/src/style.css" />
-    <link rel="stylesheet" href="/src/project.css" />
-    <style>
-        .post-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            min-height: 70vh;
-        }
-
-        .post-header {
-            margin-bottom: 3rem;
-            border-bottom: 1px solid var(--border-medium);
-            padding-bottom: 2rem;
-        }
-
-        .post-meta {
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .post-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-
-        .post-desc {
-            font-size: 1.2rem;
-            opacity: 0.7;
-            line-height: 1.6;
-        }
-
-        .post-body {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            opacity: 0.9;
-            white-space: pre-wrap; /* Mantém as quebras de linha digitadas no painel */
-        }
-        
-        .loading {
-            text-align: center;
-            opacity: 0.5;
-            margin-top: 5rem;
-        }
-    </style>
+    
+    <!-- Este arquivo CSS engloba todas as regras visuais separadas para o Blog e para a view do Post -->
+    <link rel="stylesheet" href="/src/blog.css">
 </head>
-
 <body>
-    <div class="content">
-        <header style="height: auto; padding-bottom: 0;">
-            <a href="/blog" class="back-btn" style="opacity: 0.5;">← Voltar para Todos os Artigos</a>
+    <div class="blog-container">
+        <!-- Navegação / Topo -->
+        <header class="blog-header" style="margin-bottom: 2rem; border: none; padding-bottom: 0;">
+            <a href="/blog" class="blog-back-link">← Todos os Artigos</a>
         </header>
 
-        <article class="post-container" id="postArticle">
-            <h2 class="loading">Carregando conteúdo...</h2>
-        </article>
+        <main>
+            <!-- Conteúdo processado via JS -->
+            <article class="blog-post-content" id="postArticle">
+                <div class="blog-loading">Carregando processador de texto...</div>
+            </article>
+        </main>
+        
+        <footer class="blog-footer">
+            © 2026 Mayck Santos • Engenharia & Código Limpo
+        </footer>
     </div>
+
+<!-- Elements complementares pro post -->
+    <div class="reading-progress-container"><div class="reading-progress-bar" id="progressBar"></div></div>
+    <div class="back-to-top" id="backToTop" title="Voltar ao Topo">↑</div>
 
     <!-- Puxa os detalhes do post pelo ID da requisição URL -->
     <script type="module" src="/src/post.ts"></script>
 </body>
-
 </html>
