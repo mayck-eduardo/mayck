@@ -5,19 +5,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO & SOCIAL (Como aparece no WhatsApp/LinkedIn) -->
+  <!-- SEO Essencial -->
   <title>Mayck Santos | Desenvolvedor & Engenharia</title>
   <meta name="description"
     content="Portfólio de Mayck Santos. Estudante de Engenharia da Computação, Desenvolvedor Full Stack e Músico. Especialista em Java, React e Interfaces Modernas.">
+  <meta name="author" content="Mayck Santos">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mayck-eduardo.web.app/">
   <meta name="theme-color" content="#0a0a0a">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
   <!-- Open Graph / Facebook / WhatsApp -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mayck-eduardo.web.app/">
   <meta property="og:title" content="Mayck Santos | Desenvolvedor Full Stack">
   <meta property="og:description" content="Engenharia da Computação • Java • React • Web Design.">
-  <!-- Para a imagem funcionar, salve um print do site como 'og-image.png' na pasta public -->
   <meta property="og:image" content="https://mayck-eduardo.web.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Mayck Santos">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mayck Santos | Desenvolvedor Full Stack">
+  <meta name="twitter:description" content="Engenharia da Computação • Java • React • Web Design.">
+  <meta name="twitter:image" content="https://mayck-eduardo.web.app/og-image.png">
 
   <!-- Fonte -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
@@ -51,7 +66,7 @@
       <div class="hero-main">
         <h1 class="reveal">MAYCK<br>SANTOS</h1>
         <!-- Adicionei o toque pessoal aqui -->
-        <p class="reveal">Dev Full Stack • Web Designer • Músico</p>
+        <p class="reveal">Web Developer • Web Designer • Músico</p>
       </div>
     </header>
 
@@ -63,15 +78,47 @@
       </div>
     </div>
 
+    <!-- SOBRE MIM -->
+    <section class="about-me">
+      <div class="label">SOBRE MIM</div>
+      <div class="about-grid">
+        <p class="bio">
+          Sou estudante de <strong>Engenharia da Computação</strong> com uma forte paixão por criar interfaces modernas
+          e criativas.
+          Minha jornada na tecnologia começou no curso técnico do SENAI e hoje atuo como Desenvolvedor Web.
+          <br><br>
+          Acredito que um bom código é como uma boa música: exige disciplina, criatividade e atenção aos detalhes.
+        </p>
+
+        <div class="skills-card">
+          <h4>Minha Stack</h4>
+          <div class="tags">
+            <span>Java</span>
+            <span>React</span>
+            <span>TypeScript</span>
+            <span>Python</span>
+            <span>MySQL</span>
+            <span>HTML/CSS</span>
+            <span>WordPress</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- EXPERIÊNCIA -->
     <section class="experience">
       <div class="label">EXPERIÊNCIA PROFISSIONAL</div>
-      <div class="project-row no-hover">
+      <div class="project-row no-hover exp-card">
         <div class="p-info">
           <h2>GD VIRTUAL</h2>
-          <p>Web Design & Manutenção</p>
+          <h3>Desenvolvedor & Web Designer</h3>
+          <p class="role-desc">
+            Atuação direta no desenvolvimento e manutenção de soluções web para clientes.
+            Foco em otimização de performance, criação de interfaces responsivas e manutenção contínua de sites
+            para garantir a melhor experiência do usuário final.
+          </p>
         </div>
-        <div class="p-year">ATUAL</div>
+        <div class="p-year">JAN 2025 - ATUAL</div>
       </div>
     </section>
 
@@ -104,31 +151,42 @@
     <!-- PROJETOS -->
     <section class="work">
       <div class="label">PROJETOS DE CÓDIGO</div>
-      
+
       <!-- 2. O SITE "SECRET PROJECT" (Link para a página wip.html) -->
       <!-- Note que o link é apenas "/wip" por causa do cleanUrls do Firebase -->
+      <!-- NEXT LEVEL — Projeto comentado
       <a href="./wip" class="project-row hover-trigger"
-      data-image="https://placehold.co/600x400/333/FFF?text=Secret+Project">
-      <div class="p-info">
-        <h2>NEXT LEVEL</h2>
-        <p>Em desenvolvimento (Sneak Peek)</p>
-      </div>
-      <div class="p-year">EM BREVE</div>
-    </a>
-    
-    <!-- 1. O PRÓPRIO PORTFÓLIO (Meta-projeto) -->
-    <a href="https://github.com/Mayck-E" target="_blank" class="project-row hover-trigger"
-      data-image="https://placehold.co/600x400/0a0a0a/FFF?text=Este+Portfolio">
-      <div class="p-info">
-        <h2>MEU PORTFÓLIO</h2>
-        <p>Vite + GSAP + TypeScript (Alta Performance)</p>
-      </div>
-      <div class="p-year">2025</div>
-    </a>
+        data-image="https://placehold.co/600x400/333/FFF?text=Secret+Project">
+        <div class="p-info">
+          <h2>NEXT LEVEL</h2>
+          <p>Em desenvolvimento (Sneak Peek)</p>
+        </div>
+        <div class="p-year">EM BREVE</div>
+      </a>
+      -->
+
+      <!-- Projeto: Contador -->
+      <a href="./contador" class="project-row hover-trigger"
+        data-image="https://github.com/user-attachments/assets/17826c65-13e3-4b50-9d30-432c6a404e96">
+        <div class="p-info">
+          <h2>CONTADOR</h2>
+          <p>React Native App (Rastreador de Dias & Hábitos)</p>
+        </div>
+        <div class="p-year">2026</div>
+      </a>
+
+      <!-- 1. O PRÓPRIO PORTFÓLIO (Meta-projeto) -->
+      <a href="https://github.com/Mayck-E" target="_blank" rel="noopener noreferrer" class="project-row hover-trigger"
+        data-image="https://placehold.co/600x400/0a0a0a/FFF?text=Este+Portfolio">
+        <div class="p-info">
+          <h2>MEU PORTFÓLIO</h2>
+          <p>Vite + GSAP + TypeScript (Alta Performance)</p>
+        </div>
+        <div class="p-year">2025</div>
+      </a>
 
       <!-- Projeto 1: EvoFit -->
-      <a href="https://github.com/mayck-eduardo/EvoFit" target="_blank" class="project-row hover-trigger"
-        data-image="/app.jpeg">
+      <a href="./evofit" class="project-row hover-trigger" data-image="/app.jpeg">
         <div class="p-info">
           <h2>EVOFIT</h2>
           <p>React Native App (Gestão de Treinos)</p>
@@ -137,8 +195,7 @@
       </a>
 
       <!-- Projeto 2: Estoque -->
-      <a href="https://github.com/Mayck-E/PHP_estoque" target="_blank" class="project-row hover-trigger"
-        data-image="/estoque.png">
+      <a href="./estoque" class="project-row hover-trigger" data-image="/estoque.png">
         <!-- Certifique-se de ter estoque.png na pasta public -->
         <div class="p-info">
           <h2>SISTEMA DE ESTOQUE</h2>
@@ -148,7 +205,7 @@
       </a>
 
       <!-- Projeto 3: Station Magic -->
-      <a href="https://station-magic.netlify.app" target="_blank" class="project-row hover-trigger"
+      <a href="./station-magic" class="project-row hover-trigger"
         data-image="https://placehold.co/600x400/10b981/FFF?text=Station+Magic">
         <!-- Certifique-se de ter station.png na pasta public -->
         <div class="p-info">
@@ -165,8 +222,11 @@
         <h2>VAMOS CONVERSAR?</h2>
         <a href="mailto:mayck22.03@hotmail.com">mayck22.03@hotmail.com</a>
         <div class="links">
-          <a href="www.linkedin.com/in/mayck-eduardo" target="_blank">LinkedIn</a>
-          <a href="https://github.com/Mayck-E" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/mayck-eduardo" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/Mayck-E" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div style="margin-top: 3rem;">
+          <a href="/resumo.pdf" download style="display: inline-block; padding: 1rem 2rem; border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; font-weight: 600; text-transform: uppercase; transition: all 0.3s ease; text-decoration: none;" onmouseover="this.style.background='var(--accent)'; this.style.color='var(--bg)';" onmouseout="this.style.background='transparent'; this.style.color='var(--accent)';">Baixar Resumo / CV</a>
         </div>
         <p style="margin-top: 2rem; opacity: 0.3; font-size: 0.8rem;">Soli Deo Gloria</p>
       </div>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Contador | Mayck Santos</title>
+  <meta name="description" content="Contador - Rastreador de Dias e Hábitos desenvolvido em React Native com Expo por Mayck Santos.">
+  <meta name="author" content="Mayck Santos">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mayck-eduardo.web.app/contador">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mayck-eduardo.web.app/contador">
+  <meta property="og:title" content="Contador | Mayck Santos">
+  <meta property="og:description" content="Rastreador de Dias & Hábitos Pessoais desenvolvido em React Native com Expo.">
+  <meta property="og:image" content="https://github.com/user-attachments/assets/17826c65-13e3-4b50-9d30-432c6a404e96">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Mayck Santos">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contador | Mayck Santos">
+  <meta name="twitter:description" content="Rastreador de Dias & Hábitos Pessoais desenvolvido em React Native com Expo.">
+  <meta name="twitter:image" content="https://github.com/user-attachments/assets/17826c65-13e3-4b50-9d30-432c6a404e96">
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+  <link rel="stylesheet" href="/src/project.css" />
+</head>
+
+<body>
+  <div class="cursor"></div>
+
+  <div class="content">
+    
+    <!-- Cabeçalho do Projeto -->
+    <header class="project-header">
+      <a href="./" class="back-btn">← Voltar para Home</a>
+      
+      <div class="project-title reveal">
+        <h1>CONTADOR</h1>
+        <p class="project-subtitle">Rastreador de Dias & Hábitos Pessoais</p>
+        
+        <div class="project-meta">
+          <span>ANO: 2026</span>
+          <span>PLATAFORMA: Mobile (Android / iOS)</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <article class="content-article reveal">
+      
+      <h2>Sobre o Projeto</h2>
+      <p>
+        O <strong>Contador</strong> é um aplicativo mobile desenvolvido para quem quer construir hábitos sólidos e acompanhar cada dia de progresso de forma visual e motivadora. Desenvolvido do zero com React Native + Expo, o app nasce com um conjunto completo de funcionalidades para apoiar qualquer rotina — seja academia, meditação, leitura ou qualquer meta pessoal.
+      </p>
+      <p>
+        A ideia central é oferecer uma experiência 100% offline, com um anel de progresso animado, estatísticas em tempo real e um calendário visual que exibe todo o histórico de dias marcados e resets ao longo dos meses.
+      </p>
+      
+      <div class="skills-card" style="margin: 3rem 0;">
+        <h4>Tecnologias Utilizadas</h4>
+        <div class="tags">
+          <span>React Native</span>
+          <span>Expo & Expo Router</span>
+          <span>TypeScript</span>
+          <span>AsyncStorage</span>
+          <span>expo-notifications</span>
+          <span>react-native-svg</span>
+          <span>react-native-calendars</span>
+          <span>date-fns</span>
+        </div>
+      </div>
+
+      <h2>Funcionalidades Principais</h2>
+      <ul>
+        <li><strong>Contador Diário:</strong> Marque um dia como concluído com um único toque (uma vez por dia).</li>
+        <li><strong>Anel de Progresso Animado:</strong> Visualize seu avanço em relação à meta definida de forma clara e motivadora.</li>
+        <li><strong>Metas Configuráveis:</strong> Escolha entre ciclos de 7, 14, 30, 60 ou 100 dias conforme o seu ritmo.</li>
+        <li><strong>Estatísticas em Tempo Real:</strong> Acompanhe sua sequência atual, seu recorde pessoal e sua taxa de sucesso.</li>
+        <li><strong>Calendário com Histórico:</strong> Visualize todos os dias marcados e os resets no calendário mensal colorido.</li>
+        <li><strong>Frases Motivacionais:</strong> Uma mensagem de incentivo diferente a cada marco alcançado.</li>
+        <li><strong>Contagem Regressiva:</strong> Defina uma data alvo e veja os dias, horas e segundos restantes.</li>
+        <li><strong>Desfazer Última Ação:</strong> Cometeu um engano? Reverta o registro do dia com um único toque.</li>
+        <li><strong>Notificações Inteligentes:</strong> Lembretes diários em horário configurável e mensagens especiais ao atingir marcos de 7, 14, 21, 30, 60 e 100 dias.</li>
+        <li><strong>100% Offline:</strong> Todos os dados ficam salvos localmente no dispositivo, sem necessidade de conta ou internet.</li>
+      </ul>
+
+      <!-- Galeria de Imagens -->
+      <h2>Interface do App</h2>
+      <div class="project-gallery">
+        <img src="https://github.com/user-attachments/assets/17826c65-13e3-4b50-9d30-432c6a404e96" alt="Tela Principal - Contador com Anel de Progresso">
+        <img src="https://github.com/user-attachments/assets/2cd2ceba-11b1-4b14-a972-5e756a54d394" alt="Calendário com Histórico">
+        <img src="https://github.com/user-attachments/assets/9d41910f-24b7-4110-8cf8-3634c0e416a0" alt="Contagem Regressiva">
+        <img src="https://github.com/user-attachments/assets/f7bc00a4-5959-4aa8-a9b6-2b703c42227b" alt="Configurações">
+      </div>
+
+      <div style="text-align: center; margin: 4rem 0;">
+        <a href="https://github.com/mayck-eduardo/contador" target="_blank" rel="noopener noreferrer" class="action-btn hover-trigger" data-image="https://github.com/user-attachments/assets/17826c65-13e3-4b50-9d30-432c6a404e96">
+          Ver Código no GitHub →
+        </a>
+      </div>
+
+    </article>
+
+    <footer>
+      <div class="contact">
+        <div class="links">
+          <a href="https://www.linkedin.com/in/mayck-eduardo" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/Mayck-E" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <p style="margin-top: 2rem; opacity: 0.3; font-size: 0.8rem;">Soli Deo Gloria</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

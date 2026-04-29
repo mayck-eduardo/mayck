@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>EvoFit | Mayck Santos</title>
+  <meta name="description" content="Projeto EvoFit - Gerenciador de Treinos e Progressão de Carga desenvolvido em React Native por Mayck Santos.">
+  <meta name="author" content="Mayck Santos">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mayck-eduardo.web.app/evofit">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mayck-eduardo.web.app/evofit">
+  <meta property="og:title" content="EvoFit | Mayck Santos">
+  <meta property="og:description" content="App de Gestão de Treinos & Progressão de Carga desenvolvido em React Native.">
+  <meta property="og:image" content="https://github.com/user-attachments/assets/f214fcec-a694-49c7-9819-c8bc1c85cfeb">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Mayck Santos">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EvoFit | Mayck Santos">
+  <meta name="twitter:description" content="App de Gestão de Treinos & Progressão de Carga desenvolvido em React Native.">
+  <meta name="twitter:image" content="https://github.com/user-attachments/assets/f214fcec-a694-49c7-9819-c8bc1c85cfeb">
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+  <link rel="stylesheet" href="/src/project.css" />
+</head>
+
+<body>
+  <div class="cursor"></div>
+
+  <div class="content">
+    
+    <!-- Cabeçalho do Projeto -->
+    <header class="project-header">
+      <a href="./" class="back-btn">← Voltar para Home</a>
+      
+      <div class="project-title reveal">
+        <h1>EVOFIT</h1>
+        <p class="project-subtitle">App de Gestão de Treinos & Progressão de Carga</p>
+        
+        <div class="project-meta">
+          <span>ANO: 2025</span>
+          <span>PLATAFORMA: Mobile (iOS/Android)</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <article class="content-article reveal">
+      
+      <h2>Sobre o Projeto</h2>
+      <p>
+        O <strong>EvoFit</strong> é um aplicativo móvel cross-platform desenvolvido com o objetivo de ser um assistente pessoal para o gerenciamento de treinos de força. Ele resolve o problema comum de quem treina: esquecer as cargas dos exercícios anteriores e não ter um controle claro da sua evolução na academia.
+      </p>
+      <p>
+        A abordagem que escolhi para este projeto foi focar em uma interface limpa, que permita ao usuário criar fichas de treino, marcar exercícios concluídos e, o mais importante, visualizar sua progressão de cargas através de gráficos interativos ao longo do tempo.
+      </p>
+      
+      <div class="skills-card" style="margin: 3rem 0;">
+        <h4>Tecnologias Utilizadas</h4>
+        <div class="tags">
+          <span>React Native</span>
+          <span>Expo & Expo Router</span>
+          <span>Google Firestore</span>
+          <span>Firebase Auth</span>
+          <span>TypeScript</span>
+        </div>
+      </div>
+
+      <h2>Funcionalidades Principais</h2>
+      <ul>
+        <li><strong>Autenticação Segura:</strong> Sistema de login e cadastro seguro utilizando Firebase Auth.</li>
+        <li><strong>Gerenciamento de Fichas:</strong> CRUD completo (Criar, Ler, Atualizar e Deletar) de rotinas e exercícios de treino.</li>
+        <li><strong>Registro Detalhado de Carga:</strong> Modal dedicado para registrar o peso e repetições feitas no dia a dia.</li>
+        <li><strong>Gráficos de Progressão:</strong> Visualização da evolução da carga com gráficos interativos usando <code>react-native-gifted-charts</code>.</li>
+        <li><strong>Backup via JSON:</strong> Exportação e importação manual dos dados de treino em nuvem, garantindo a segurança das informações.</li>
+      </ul>
+
+      <!-- Galeria de Imagens -->
+      <h2>Interface do App</h2>
+      <div class="project-gallery">
+        <img src="https://github.com/user-attachments/assets/f214fcec-a694-49c7-9819-c8bc1c85cfeb" alt="Fichas de Treino">
+        <img src="https://github.com/user-attachments/assets/d19b52a3-29c0-4a63-8945-ec1bd5c2c2da" alt="Exercícios da Ficha">
+        <img src="https://github.com/user-attachments/assets/142e7827-db96-4663-9610-20fa646ad118" alt="Registro de Carga">
+        <img src="https://github.com/user-attachments/assets/c53f45b1-7225-42f4-acbd-a0f7c51e05df" alt="Histórico do Calendário">
+      </div>
+
+      <div style="text-align: center; margin: 4rem 0;">
+        <a href="https://github.com/mayck-eduardo/EvoFit" target="_blank" rel="noopener noreferrer" class="action-btn hover-trigger" data-image="/app.jpeg">
+          Ver Código no GitHub →
+        </a>
+      </div>
+
+    </article>
+
+    <footer>
+      <div class="contact">
+        <div class="links">
+          <a href="https://www.linkedin.com/in/mayck-eduardo" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/Mayck-E" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <p style="margin-top: 2rem; opacity: 0.3; font-size: 0.8rem;">Soli Deo Gloria</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

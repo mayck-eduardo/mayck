@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post | Mayck Santos</title>
+    <meta name="description" content="Artigo exclusivo no blog de Mayck Santos.">
+    <meta name="author" content="Mayck Santos">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    
+    <!-- Este arquivo CSS engloba todas as regras visuais separadas para o Blog e para a view do Post -->
+    <link rel="stylesheet" href="/src/blog.css">
+</head>
+<body>
+    <div class="blog-container">
+        <!-- Navegação / Topo -->
+        <header class="blog-header" style="margin-bottom: 2rem; border: none; padding-bottom: 0;">
+            <a href="/blog" class="blog-back-link">← Todos os Artigos</a>
+        </header>
+
+        <main>
+            <!-- Conteúdo processado via JS -->
+            <article class="blog-post-content" id="postArticle">
+                <div class="blog-loading">Carregando processador de texto...</div>
+            </article>
+        </main>
+        
+        <footer class="blog-footer">
+            © 2026 Mayck Santos • Engenharia & Código Limpo
+        </footer>
+    </div>
+
+<!-- Elements complementares pro post -->
+    <div class="reading-progress-container"><div class="reading-progress-bar" id="progressBar"></div></div>
+    <div class="back-to-top" id="backToTop" title="Voltar ao Topo">↑</div>
+
+    <!-- Puxa os detalhes do post pelo ID da requisição URL -->
+    <script type="module" src="/src/post.ts"></script>
+</body>
+</html>
