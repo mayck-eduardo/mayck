@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Day Tracker | Mayck Santos</title>
+  <meta name="description" content="Day Tracker - Acompanhe o progresso do seu dia em tempo real com céu dinâmico, histórico de sono e insights de produtividade por Mayck Santos.">
+  <meta name="author" content="Mayck Santos">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mayck-eduardo.web.app/daytracker">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mayck-eduardo.web.app/daytracker">
+  <meta property="og:title" content="Day Tracker | Mayck Santos">
+  <meta property="og:description" content="Acompanhe o progresso do seu dia em tempo real com céu dinâmico, histórico de sono e insights de produtividade.">
+  <meta property="og:image" content="https://placehold.co/1200x630/0f172a/e1e1e1?text=Day+Tracker">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Mayck Santos">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Day Tracker | Mayck Santos">
+  <meta name="twitter:description" content="Acompanhe o progresso do seu dia em tempo real com céu dinâmico e insights de produtividade.">
+  <meta name="twitter:image" content="https://placehold.co/1200x630/0f172a/e1e1e1?text=Day+Tracker">
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+  <link rel="stylesheet" href="/src/project.css" />
+</head>
+
+<body>
+  <div class="cursor"></div>
+
+  <div class="content">
+    
+    <!-- Cabeçalho do Projeto -->
+    <header class="project-header">
+      <a href="./" class="back-btn">← Voltar para Home</a>
+      
+      <div class="project-title reveal">
+        <h1>DAY TRACKER</h1>
+        <p class="project-subtitle">Progresso do Dia em Tempo Real — Céu Dinâmico, Sono & Produtividade</p>
+        
+        <div class="project-meta">
+          <span>ANO: 2025</span>
+          <span>PLATAFORMA: Mobile (Android / iOS)</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <article class="content-article reveal">
+      
+      <h2>Sobre o Projeto</h2>
+      <p>
+        O <strong>Day Tracker</strong> é um app mobile para visualizar o quanto do seu dia já passou e o quanto ainda resta. Simples na ideia, mas rico nos detalhes — usa seus horários de início e fim do dia para calcular o progresso em tempo real, exibindo uma barra circular animada, estatísticas de tempo e um <strong>céu dinâmico</strong> que muda conforme o período do dia.
+      </p>
+      <p>
+        Desde a madrugada estrelada até o entardecer alaranjado, o app cria uma experiência visual imersiva que conecta o usuário com a passagem do tempo de forma poética e funcional.
+      </p>
+      
+      <div class="skills-card" style="margin: 3rem 0;">
+        <h4>Tecnologias Utilizadas</h4>
+        <div class="tags">
+          <span>React Native</span>
+          <span>Expo SDK</span>
+          <span>expo-linear-gradient</span>
+          <span>AsyncStorage</span>
+          <span>react-native-svg</span>
+          <span>safe-area-context</span>
+        </div>
+      </div>
+
+      <h2>Funcionalidades Principais</h2>
+      <ul>
+        <li><strong>Progresso do Dia:</strong> Porcentagem do dia concluído atualizada em tempo real com anel de progresso animado.</li>
+        <li><strong>Céu Dinâmico:</strong> Gradiente e astros animados que mudam conforme o horário — madrugada estrelada, amanhecer roxo, manhã azul, tarde intensa, entardecer alaranjado e noite com lua.</li>
+        <li><strong>Estatísticas de Tempo:</strong> Tempo decorrido e tempo restante do dia exibidos em cards dedicados.</li>
+        <li><strong>Registro de Sono:</strong> Calcula automaticamente a janela de sono entre o fim e início do dia.</li>
+        <li><strong>Histórico:</strong> Lista de registros diários com edição e exclusão.</li>
+        <li><strong>Analytics:</strong> Gráficos semanais de sono, humor e produtividade.</li>
+        <li><strong>Humor & Produtividade:</strong> Registro diário de como você se sentiu e o quanto produziu.</li>
+        <li><strong>Frases Motivacionais:</strong> Citações rotativas baseadas no seu progresso.</li>
+        <li><strong>Easter Egg:</strong> Toque no anel de progresso para uma surpresa!</li>
+        <li><strong>100% Offline:</strong> Dados salvos com AsyncStorage — sem necessidade de login.</li>
+      </ul>
+
+      <h2>Temas de Céu por Período</h2>
+      <p>
+        O app adapta seu visual conforme o horário: 🌙 Madrugada (00h–05h) com céu escuro e estrelas animadas, 🌅 Amanhecer (05h–07h) com gradiente roxo → laranja, ☀️ Manhã (07h–11h) azul claro com sol, 🌤 Tarde (11h–15h) azul intenso, 🌇 Entardecer (15h–18h) laranja e vermelho, 🌆 Anoitecer (18h–20h) roxo escuro e 🌙 Noite (20h–00h) azul escuro com lua.
+      </p>
+
+      <div style="text-align: center; margin: 4rem 0;">
+        <a href="https://github.com/mayck-eduardo/daytracker" target="_blank" rel="noopener noreferrer" class="action-btn hover-trigger" data-image="https://placehold.co/600x400/0f172a/e1e1e1?text=Day+Tracker">
+          Ver Código no GitHub →
+        </a>
+      </div>
+
+    </article>
+
+    <footer>
+      <div class="contact">
+        <div class="links">
+          <a href="https://www.linkedin.com/in/mayck-eduardo" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/Mayck-E" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <p style="margin-top: 2rem; opacity: 0.3; font-size: 0.8rem;">Soli Deo Gloria</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

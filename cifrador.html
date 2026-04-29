@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Cifrador | Mayck Santos</title>
+  <meta name="description" content="Cifrador - Ferramenta inteligente para automação de cifras musicais desenvolvido em Next.js por Mayck Santos.">
+  <meta name="author" content="Mayck Santos">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mayck-eduardo.web.app/cifrador">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mayck-eduardo.web.app/cifrador">
+  <meta property="og:title" content="Cifrador | Mayck Santos">
+  <meta property="og:description" content="Ferramenta inteligente para automação de cifras musicais — transforma nomes de músicas ou links do YouTube em documentos formatados (DOCX/PDF).">
+  <meta property="og:image" content="https://cifrador-chi.vercel.app/og-image.png">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Mayck Santos">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cifrador | Mayck Santos">
+  <meta name="twitter:description" content="Ferramenta inteligente para automação de cifras musicais desenvolvido em Next.js.">
+  <meta name="twitter:image" content="https://cifrador-chi.vercel.app/og-image.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+  <link rel="stylesheet" href="/src/project.css" />
+</head>
+
+<body>
+  <div class="cursor"></div>
+
+  <div class="content">
+    
+    <!-- Cabeçalho do Projeto -->
+    <header class="project-header">
+      <a href="./" class="back-btn">← Voltar para Home</a>
+      
+      <div class="project-title reveal">
+        <h1>CIFRADOR</h1>
+        <p class="project-subtitle">Ferramenta Inteligente para Automação de Cifras Musicais</p>
+        
+        <div class="project-meta">
+          <span>ANO: 2025</span>
+          <span>PLATAFORMA: Web (Next.js 16)</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <article class="content-article reveal">
+      
+      <h2>Sobre o Projeto</h2>
+      <p>
+        O <strong>Cifrador</strong> é uma ferramenta web que transforma nomes de músicas ou links do YouTube em documentos formatados (DOCX/PDF) prontos para uso. Ele conecta-se diretamente à API do CifraClub para buscar cifras, processa o conteúdo com transposição de acordes, identificação de seções e gera documentos profissionalmente formatados.
+      </p>
+      <p>
+        A ideia surgiu da necessidade de músicos que desejam ter suas cifras personalizadas, com cores customizadas por seção, transposição de tom e opção de ocultar tablaturas — tudo exportável em formato editável (DOCX) ou estático (PDF).
+      </p>
+      
+      <div class="skills-card" style="margin: 3rem 0;">
+        <h4>Tecnologias Utilizadas</h4>
+        <div class="tags">
+          <span>Next.js 16</span>
+          <span>React 19</span>
+          <span>TypeScript</span>
+          <span>Tailwind CSS 4</span>
+          <span>Framer Motion</span>
+          <span>Cheerio</span>
+          <span>docx</span>
+          <span>pdf-lib</span>
+          <span>Lucide React</span>
+          <span>Vercel</span>
+        </div>
+      </div>
+
+      <h2>Funcionalidades Principais</h2>
+      <ul>
+        <li><strong>Busca Inteligente:</strong> Pesquisa diretamente na API do CifraClub. Suporta nome da música, artista ou link direto.</li>
+        <li><strong>Link do YouTube:</strong> Cole um link do YouTube e o Cifrador extrai automaticamente o título e busca a cifra correspondente.</li>
+        <li><strong>Transposição em Tempo Real:</strong> Transponha o tom da cifra de -12 a +12 semitons com preservação de espaçamento.</li>
+        <li><strong>Cores Customizáveis:</strong> Personalize as cores de cada seção — Títulos, Acordes, Letras, Refrão, Pré-Refrão e Ponte.</li>
+        <li><strong>Layouts Adaptáveis:</strong> Formato A4 (Desktop) ou Mobile (10×30cm) para leitura em dispositivos móveis.</li>
+        <li><strong>Ocultar Tablaturas:</strong> Remove tablaturas diretamente do DOM + limpeza algorítmica.</li>
+        <li><strong>Versão Simplificada:</strong> Acordes básicos do CifraClub para iniciantes.</li>
+        <li><strong>Dimensionamento Inteligente:</strong> Cálculo dinâmico de tamanho de fonte para evitar quebra de linhas.</li>
+        <li><strong>Multi-Formato:</strong> Exportação simultânea para DOCX (editável) e PDF (estático).</li>
+        <li><strong>Seções Destacadas:</strong> Marcadores como [Refrão], [Ponte], [Pré-Refrão] recebem destaque amarelo automático.</li>
+      </ul>
+
+      <h2>Arquitetura</h2>
+      <p>
+        O projeto utiliza <strong>Next.js Server Actions</strong> para processar as requisições server-side: busca na API Solr do CifraClub com fallback para Google, extração com Cheerio, processamento de transposição e geração de documentos DOCX e PDF com formatação e cores personalizadas.
+      </p>
+
+      <div style="text-align: center; margin: 4rem 0;">
+        <a href="https://cifrador-chi.vercel.app/" target="_blank" rel="noopener noreferrer" class="action-btn primary hover-trigger" data-image="https://cifrador-chi.vercel.app/og-image.png">
+          Acessar Demo →
+        </a>
+        <a href="https://github.com/mayck-eduardo/cifrador" target="_blank" rel="noopener noreferrer" class="action-btn hover-trigger" data-image="https://cifrador-chi.vercel.app/og-image.png">
+          Ver Código no GitHub →
+        </a>
+      </div>
+
+    </article>
+
+    <footer>
+      <div class="contact">
+        <div class="links">
+          <a href="https://www.linkedin.com/in/mayck-eduardo" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/Mayck-E" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <p style="margin-top: 2rem; opacity: 0.3; font-size: 0.8rem;">Soli Deo Gloria</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

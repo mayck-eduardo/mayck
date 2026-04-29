@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Banda | Mayck Santos</title>
+  <meta name="description" content="Banda - Aplicativo mobile para gestão de banda desenvolvido em React Native com Expo por Mayck Santos.">
+  <meta name="author" content="Mayck Santos">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mayck-eduardo.web.app/banda">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mayck-eduardo.web.app/banda">
+  <meta property="og:title" content="Banda | Mayck Santos">
+  <meta property="og:description" content="App mobile para gestão de banda desenvolvido em React Native com autenticação e navegação por abas.">
+  <meta property="og:image" content="https://placehold.co/1200x630/1e1b4b/e1e1e1?text=Banda+App">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Mayck Santos">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Banda | Mayck Santos">
+  <meta name="twitter:description" content="App mobile para gestão de banda desenvolvido em React Native.">
+  <meta name="twitter:image" content="https://placehold.co/1200x630/1e1b4b/e1e1e1?text=Banda+App">
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+  <link rel="stylesheet" href="/src/project.css" />
+</head>
+
+<body>
+  <div class="cursor"></div>
+
+  <div class="content">
+    
+    <!-- Cabeçalho do Projeto -->
+    <header class="project-header">
+      <a href="./" class="back-btn">← Voltar para Home</a>
+      
+      <div class="project-title reveal">
+        <h1>BANDA</h1>
+        <p class="project-subtitle">App Mobile para Gestão de Banda & Ensaios</p>
+        
+        <div class="project-meta">
+          <span>ANO: 2025</span>
+          <span>PLATAFORMA: Mobile (Android / iOS)</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <article class="content-article reveal">
+      
+      <h2>Sobre o Projeto</h2>
+      <p>
+        O <strong>Banda</strong> é um aplicativo mobile desenvolvido para facilitar a organização e gestão de bandas musicais. Com sistema de autenticação e navegação por abas, o app oferece uma experiência fluida para gerenciar ensaios, repertórios e a rotina do grupo.
+      </p>
+      <p>
+        Construído com React Native e Expo, o projeto utiliza React Navigation para roteamento entre telas, contextos para gerenciamento de estado global e SVG para elementos visuais customizados.
+      </p>
+      
+      <div class="skills-card" style="margin: 3rem 0;">
+        <h4>Tecnologias Utilizadas</h4>
+        <div class="tags">
+          <span>React Native</span>
+          <span>Expo SDK</span>
+          <span>React Navigation</span>
+          <span>Auth Context</span>
+          <span>react-native-svg</span>
+          <span>Lucide React Native</span>
+          <span>safe-area-context</span>
+        </div>
+      </div>
+
+      <h2>Funcionalidades Principais</h2>
+      <ul>
+        <li><strong>Autenticação:</strong> Sistema de login com contexto de autenticação para controle de acesso.</li>
+        <li><strong>Navegação por Abas:</strong> Bottom Tabs Navigation para acesso rápido às diferentes seções do app.</li>
+        <li><strong>Stack Navigation:</strong> Navegação em pilha para telas de detalhe e fluxos secundários.</li>
+        <li><strong>Interface Responsiva:</strong> Suporte a Safe Area Context para adaptação em diferentes dispositivos.</li>
+        <li><strong>Elementos Visuais SVG:</strong> Ícones e gráficos vetoriais via react-native-svg e Lucide.</li>
+      </ul>
+
+      <div style="text-align: center; margin: 4rem 0;">
+        <a href="https://github.com/mayck-eduardo/banda" target="_blank" rel="noopener noreferrer" class="action-btn hover-trigger" data-image="https://placehold.co/600x400/1e1b4b/e1e1e1?text=Banda+App">
+          Ver Código no GitHub →
+        </a>
+      </div>
+
+    </article>
+
+    <footer>
+      <div class="contact">
+        <div class="links">
+          <a href="https://www.linkedin.com/in/mayck-eduardo" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/Mayck-E" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <p style="margin-top: 2rem; opacity: 0.3; font-size: 0.8rem;">Soli Deo Gloria</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
