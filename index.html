@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- SEO Essencial -->
-  <title>Mayck Santos | Desenvolvedor & Engenharia</title>
+  <title>Mayck Santos | Desenvolvedor Full Stack & Engenharia</title>
   <meta name="description"
     content="Portfólio de Mayck Santos. Estudante de Engenharia da Computação, Desenvolvedor Full Stack e Músico. Especialista em Java, React e Interfaces Modernas.">
   <meta name="author" content="Mayck Santos">
@@ -34,226 +34,471 @@
   <meta name="twitter:description" content="Engenharia da Computação • Java • React • Web Design.">
   <meta name="twitter:image" content="https://mayck-eduardo.web.app/og-image.png">
 
-  <!-- Fonte -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 
 <body>
 
-  <!-- 1. PRELOADER (Tela de Carregamento) -->
+  <!-- 1. PRELOADER -->
   <div class="preloader">
-    <div class="preloader-text">
-      <span>MAYCK</span>
-      <span>SANTOS</span>
-      <span>©2026</span>
+    <div class="preloader-inner">
+      <div class="preloader-logo">MAYCK SANTOS</div>
+      <div class="preloader-bar">
+        <div class="preloader-progress"></div>
+      </div>
     </div>
   </div>
 
-  <!-- 2. CURSOR -->
-  <div class="cursor"></div>
+  <!-- 2. BACKGROUND EFFECTS -->
+  <div class="bg-grid"></div>
+  <div class="bg-noise"></div>
+  <div class="bg-gradient-orb orb-1"></div>
+  <div class="bg-gradient-orb orb-2"></div>
 
-  <!-- 3. IMAGEM PREVIEW ÚNICA -->
+  <!-- 3. CURSOR -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- 4. IMAGEM PREVIEW -->
   <img src="" class="hover-img" alt="Project Preview">
 
+  <!-- 5. NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <span class="logo-mark">M</span>
+        <span class="logo-text">Mayck Santos</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about" class="nav-link">Sobre</a>
+        <a href="#experience" class="nav-link">Experiência</a>
+        <a href="#projects" class="nav-link">Projetos</a>
+        <a href="#contact" class="nav-link nav-link-cta">Contato</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" class="mobile-link">Sobre</a>
+    <a href="#experience" class="mobile-link">Experiência</a>
+    <a href="#projects" class="mobile-link">Projetos</a>
+    <a href="#contact" class="mobile-link">Contato</a>
+  </div>
+
+  <!-- CONTENT -->
   <div class="content">
 
-    <header>
-      <div class="top-bar">
-        <span>ENGENHARIA DA COMPUTAÇÃO</span>
-        <span>VOTUPORANGA - SP</span>
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>Disponível para projetos</span>
       </div>
+
       <div class="hero-main">
-        <h1 class="reveal">MAYCK<br>SANTOS</h1>
-        <!-- Adicionei o toque pessoal aqui -->
-        <p class="reveal">Web Developer • Web Designer • Músico</p>
+        <h1 class="hero-title">
+          <span class="title-line">
+            <span class="title-word" data-word="MAYCK">MAYCK</span>
+          </span>
+          <span class="title-line">
+            <span class="title-word" data-word="SANTOS">SANTOS</span>
+          </span>
+        </h1>
+        <div class="hero-subtitle-wrapper">
+          <p class="hero-subtitle">
+            <span class="subtitle-item">Web Developer</span>
+            <span class="subtitle-sep">—</span>
+            <span class="subtitle-item">Web Designer</span>
+            <span class="subtitle-sep">—</span>
+            <span class="subtitle-item">Músico</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="hero-footer">
+        <div class="hero-location">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span>Votuporanga, SP — Brasil</span>
+        </div>
+        <div class="hero-scroll-indicator">
+          <span>Scroll</span>
+          <div class="scroll-line"></div>
+        </div>
       </div>
     </header>
 
     <!-- MARQUEE -->
     <div class="marquee-container">
       <div class="marquee-content">
-        JAVA • PYTHON • REACT NATIVE • HTML5 • CSS3 • MYSQL • WORDPRESS • VIOLINO & GUITARRA •
-        JAVA • PYTHON • REACT NATIVE • HTML5 • CSS3 • MYSQL • WORDPRESS • VIOLINO & GUITARRA •
+        <span>Java</span><span class="marquee-dot">•</span>
+        <span>Python</span><span class="marquee-dot">•</span>
+        <span>React Native</span><span class="marquee-dot">•</span>
+        <span>TypeScript</span><span class="marquee-dot">•</span>
+        <span>HTML5</span><span class="marquee-dot">•</span>
+        <span>CSS3</span><span class="marquee-dot">•</span>
+        <span>MySQL</span><span class="marquee-dot">•</span>
+        <span>WordPress</span><span class="marquee-dot">•</span>
+        <span>Firebase</span><span class="marquee-dot">•</span>
+        <span>Git</span><span class="marquee-dot">•</span>
       </div>
     </div>
 
     <!-- SOBRE MIM -->
-    <section class="about-me">
-      <div class="label">SOBRE MIM</div>
-      <div class="about-grid">
-        <p class="bio">
-          Sou estudante de <strong>Engenharia da Computação</strong> com uma forte paixão por criar interfaces modernas
-          e criativas.
-          Minha jornada na tecnologia começou no curso técnico do SENAI e hoje atuo como Desenvolvedor Web.
-          <br><br>
-          Acredito que um bom código é como uma boa música: exige disciplina, criatividade e atenção aos detalhes.
-        </p>
+    <section class="about-me" id="about">
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <span class="section-label">SOBRE MIM</span>
+      </div>
 
-        <div class="skills-card">
-          <h4>Minha Stack</h4>
-          <div class="tags">
-            <span>Java</span>
-            <span>React</span>
-            <span>TypeScript</span>
-            <span>Python</span>
-            <span>MySQL</span>
-            <span>HTML/CSS</span>
-            <span>WordPress</span>
+      <div class="about-grid">
+        <div class="about-content">
+          <p class="bio">
+            Estudante de <strong>Engenharia da Computação</strong> com paixão por criar interfaces modernas e experiências digitais memoráveis.
+          </p>
+          <p class="bio-extended">
+            Minha jornada começou no curso técnico do SENAI e hoje atuo como Desenvolvedor Web na GD Virtual.
+            Acredito que um bom código é como uma boa música: exige disciplina, criatividade e atenção aos detalhes.
+          </p>
+        </div>
+
+        <div class="about-sidebar">
+          <div class="skills-card">
+            <h4>Tecnologias</h4>
+            <div class="tags">
+              <span class="tag tag-primary">Java</span>
+              <span class="tag tag-primary">React</span>
+              <span class="tag tag-primary">TypeScript</span>
+              <span class="tag tag-secondary">Python</span>
+              <span class="tag tag-secondary">MySQL</span>
+              <span class="tag tag-secondary">HTML/CSS</span>
+              <span class="tag tag-secondary">WordPress</span>
+              <span class="tag tag-secondary">Firebase</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-item">
+              <span class="info-label">Formação</span>
+              <span class="info-value">Engenharia da Computação</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Experiência</span>
+              <span class="info-value">+1 ano</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Certificações</span>
+              <span class="info-value">Oracle, Microsoft, Cisco</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- EXPERIÊNCIA -->
-    <section class="experience">
-      <div class="label">EXPERIÊNCIA PROFISSIONAL</div>
-      <div class="project-row no-hover exp-card">
-        <div class="p-info">
-          <h2>GD VIRTUAL</h2>
-          <h3>Desenvolvedor & Web Designer</h3>
-          <p class="role-desc">
-            Atuação direta no desenvolvimento e manutenção de soluções web para clientes.
-            Foco em otimização de performance, criação de interfaces responsivas e manutenção contínua de sites
-            para garantir a melhor experiência do usuário final.
-          </p>
+    <!-- MÉTRICAS -->
+    <section class="metrics">
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-number" data-target="9">0</span>
+          <span class="metric-suffix">+</span>
+          <span class="metric-label">Projetos Entregues</span>
         </div>
-        <div class="p-year">JAN 2025 - ATUAL</div>
+        <div class="metric-card">
+          <span class="metric-number" data-target="7">0</span>
+          <span class="metric-suffix"></span>
+          <span class="metric-label">Tecnologias Dominadas</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-number" data-target="4">0</span>
+          <span class="metric-suffix"></span>
+          <span class="metric-label">Certificações</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-number" data-target="100">0</span>
+          <span class="metric-suffix">%</span>
+          <span class="metric-label">Dedicação</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIÊNCIA -->
+    <section class="experience" id="experience">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <span class="section-label">EXPERIÊNCIA PROFISSIONAL</span>
+      </div>
+
+      <div class="exp-timeline">
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-company">
+              <h3>GD Virtual</h3>
+              <span class="exp-role">Desenvolvedor & Web Designer</span>
+            </div>
+            <span class="exp-period">Jan 2025 — Atual</span>
+          </div>
+          <p class="exp-desc">
+            Desenvolvimento e manutenção de soluções web para clientes. Foco em otimização de performance, interfaces responsivas e experiência do usuário.
+          </p>
+          <div class="exp-tags">
+            <span class="exp-tag">WordPress</span>
+            <span class="exp-tag">HTML/CSS</span>
+            <span class="exp-tag">JavaScript</span>
+            <span class="exp-tag">Performance</span>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- FORMAÇÃO -->
     <section class="education">
-      <div class="label">FORMAÇÃO ACADÊMICA</div>
+      <div class="section-header">
+        <span class="section-number">03</span>
+        <span class="section-label">FORMAÇÃO & CERTIFICAÇÕES</span>
+      </div>
 
-      <div class="edu-item">
-        <span class="year">2025 - PRESENTE</span>
-        <div class="details">
-          <h3>Engenharia da Computação</h3>
-          <p>UNIFEV - Centro Universitário de Votuporanga</p>
+      <div class="edu-list">
+        <div class="edu-item">
+          <div class="edu-year">2025 — Pres</div>
+          <div class="edu-content">
+            <h3>Engenharia da Computação</h3>
+            <p>UNIFEV — Centro Universitário de Votuporanga</p>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-year">2023 — 2024</div>
+          <div class="edu-content">
+            <h3>Técnico em Desenvolvimento de Sistemas</h3>
+            <p>SENAI</p>
+          </div>
         </div>
       </div>
 
-      <div class="edu-item">
-        <span class="year">2023 - 2024</span>
-        <div class="details">
-          <h3>Técnico em Desenv. de Sistemas</h3>
-          <p>SENAI</p>
+      <div class="certifications">
+        <h4>Certificações</h4>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <span class="cert-icon">🏆</span>
+            <div class="cert-info">
+              <span class="cert-name">Java Foundations</span>
+              <span class="cert-issuer">Oracle</span>
+            </div>
+          </div>
+          <div class="cert-card">
+            <span class="cert-icon">☁️</span>
+            <div class="cert-info">
+              <span class="cert-name">Azure Fundamentals AZ-900</span>
+              <span class="cert-issuer">Microsoft</span>
+            </div>
+          </div>
+          <div class="cert-card">
+            <span class="cert-icon">📊</span>
+            <div class="cert-info">
+              <span class="cert-name">Power BI</span>
+              <span class="cert-issuer">Senac</span>
+            </div>
+          </div>
+          <div class="cert-card">
+            <span class="cert-icon">🔒</span>
+            <div class="cert-info">
+              <span class="cert-name">Cybersecurity</span>
+              <span class="cert-issuer">Cisco</span>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div class="edu-extra">
-        <h4>CERTIFICAÇÕES:</h4>
-        <p>Java Foundations (Oracle) • Power BI (Senac) • Azure AZ-900 (Microsoft) • Cybersecurity (Cisco)</p>
       </div>
     </section>
 
     <!-- PROJETOS -->
-    <section class="work">
-      <div class="label">PROJETOS DE CÓDIGO</div>
+    <section class="work" id="projects">
+      <div class="section-header">
+        <span class="section-number">04</span>
+        <span class="section-label">PROJETOS SELECIONADOS</span>
+      </div>
 
-      <!-- Projeto: Cifrador (Web) -->
-      <a href="./cifrador" class="project-row hover-trigger"
-        data-image="https://cifrador-chi.vercel.app/og-image.png">
-        <div class="p-info">
-          <h2>CIFRADOR</h2>
-          <p>Next.js 16 (Automação de Cifras Musicais → DOCX/PDF)</p>
-        </div>
-        <div class="p-year">2025</div>
-      </a>
+      <div class="projects-grid">
+        <!-- Cifrador -->
+        <a href="./cifrador" class="project-card hover-trigger" data-image="https://cifrador-chi.vercel.app/og-image.png">
+          <div class="card-header">
+            <span class="card-year">2025</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <div class="card-body">
+            <h3>Cifrador</h3>
+            <p>Automação de cifras musicais com geração de documentos DOCX/PDF</p>
+          </div>
+          <div class="card-footer">
+            <span class="tech-badge">Next.js</span>
+            <span class="tech-badge">Node.js</span>
+            <span class="tech-badge">API</span>
+          </div>
+        </a>
 
-      <!-- Projeto: Cifrador Mobile -->
-      <a href="./cifrador-mobile" class="project-row hover-trigger"
-        data-image="https://placehold.co/600x400/1a1a2e/e1e1e1?text=Cifras+Mobile">
-        <div class="p-info">
-          <h2>CIFRAS MOBILE</h2>
-          <p>React Native (App Nativo para Músicos)</p>
-        </div>
-        <div class="p-year">2025</div>
-      </a>
+        <!-- Cifrador Mobile -->
+        <a href="./cifrador-mobile" class="project-card hover-trigger" data-image="https://placehold.co/600x400/1a1a2e/e1e1e1?text=Cifras+Mobile">
+          <div class="card-header">
+            <span class="card-year">2025</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <div class="card-body">
+            <h3>Cifras Mobile</h3>
+            <p>Aplicativo nativo para músicos com acesso offline a cifras</p>
+          </div>
+          <div class="card-footer">
+            <span class="tech-badge">React Native</span>
+            <span class="tech-badge">Mobile</span>
+          </div>
+        </a>
 
-      <!-- Projeto: Contador -->
-      <a href="./contador" class="project-row hover-trigger"
-        data-image="https://github.com/user-attachments/assets/17826c65-13e3-4b50-9d30-432c6a404e96">
-        <div class="p-info">
-          <h2>CONTADOR</h2>
-          <p>React Native App (Rastreador de Dias & Hábitos)</p>
-        </div>
-        <div class="p-year">2026</div>
-      </a>
+        <!-- Contador -->
+        <a href="./contador" class="project-card hover-trigger" data-image="https://github.com/user-attachments/assets/17826c65-13e3-4b50-9d30-432c6a404e96">
+          <div class="card-header">
+            <span class="card-year">2026</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <div class="card-body">
+            <h3>Contador</h3>
+            <p>Rastreador de dias e hábitos com interface minimalista</p>
+          </div>
+          <div class="card-footer">
+            <span class="tech-badge">React Native</span>
+            <span class="tech-badge">Produtividade</span>
+          </div>
+        </a>
 
-      <!-- Projeto: Day Tracker -->
-      <a href="./daytracker" class="project-row hover-trigger"
-        data-image="https://placehold.co/600x400/0f172a/e1e1e1?text=Day+Tracker">
-        <div class="p-info">
-          <h2>DAY TRACKER</h2>
-          <p>React Native (Progresso do Dia & Céu Dinâmico)</p>
-        </div>
-        <div class="p-year">2025</div>
-      </a>
+        <!-- Day Tracker -->
+        <a href="./daytracker" class="project-card hover-trigger" data-image="https://placehold.co/600x400/0f172a/e1e1e1?text=Day+Tracker">
+          <div class="card-header">
+            <span class="card-year">2025</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <div class="card-body">
+            <h3>Day Tracker</h3>
+            <p>Progresso do dia com céu dinâmico e visualização em tempo real</p>
+          </div>
+          <div class="card-footer">
+            <span class="tech-badge">React Native</span>
+            <span class="tech-badge">UI/UX</span>
+          </div>
+        </a>
 
-      <!-- Projeto: Banda -->
-      <a href="./banda" class="project-row hover-trigger"
-        data-image="https://placehold.co/600x400/1e1b4b/e1e1e1?text=Banda+App">
-        <div class="p-info">
-          <h2>BANDA</h2>
-          <p>React Native (Gestão de Banda & Ensaios)</p>
-        </div>
-        <div class="p-year">2025</div>
-      </a>
+        <!-- Banda -->
+        <a href="./banda" class="project-card hover-trigger" data-image="https://placehold.co/600x400/1e1b4b/e1e1e1?text=Banda+App">
+          <div class="card-header">
+            <span class="card-year">2025</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <div class="card-body">
+            <h3>Banda</h3>
+            <p>Gestão de banda com controle de ensaios e repertório</p>
+          </div>
+          <div class="card-footer">
+            <span class="tech-badge">React Native</span>
+            <span class="tech-badge">Firebase</span>
+          </div>
+        </a>
 
-      <!-- 1. O PRÓPRIO PORTFÓLIO (Meta-projeto) -->
-      <a href="https://github.com/Mayck-E" target="_blank" rel="noopener noreferrer" class="project-row hover-trigger"
-        data-image="https://placehold.co/600x400/0a0a0a/FFF?text=Este+Portfolio">
-        <div class="p-info">
-          <h2>MEU PORTFÓLIO</h2>
-          <p>Vite + GSAP + TypeScript (Alta Performance)</p>
-        </div>
-        <div class="p-year">2025</div>
-      </a>
+        <!-- EvoFit -->
+        <a href="./evofit" class="project-card hover-trigger" data-image="/app.jpeg">
+          <div class="card-header">
+            <span class="card-year">2025</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <div class="card-body">
+            <h3>EvoFit</h3>
+            <p>Gestão de treinos com progressão e acompanhamento fitness</p>
+          </div>
+          <div class="card-footer">
+            <span class="tech-badge">React Native</span>
+            <span class="tech-badge">Saúde</span>
+          </div>
+        </a>
 
-      <!-- Projeto 1: EvoFit -->
-      <a href="./evofit" class="project-row hover-trigger" data-image="/app.jpeg">
-        <div class="p-info">
-          <h2>EVOFIT</h2>
-          <p>React Native App (Gestão de Treinos)</p>
-        </div>
-        <div class="p-year">2025</div>
-      </a>
+        <!-- Estoque -->
+        <a href="./estoque" class="project-card hover-trigger" data-image="/estoque.png">
+          <div class="card-header">
+            <span class="card-year">2024</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <div class="card-body">
+            <h3>Sistema de Estoque</h3>
+            <p>Controle de entrada e saída com painel administrativo</p>
+          </div>
+          <div class="card-footer">
+            <span class="tech-badge">PHP</span>
+            <span class="tech-badge">MySQL</span>
+          </div>
+        </a>
 
-      <!-- Projeto 2: Estoque -->
-      <a href="./estoque" class="project-row hover-trigger" data-image="/estoque.png">
-        <div class="p-info">
-          <h2>SISTEMA DE ESTOQUE</h2>
-          <p>PHP + MySQL (Controle de entrada e saída)</p>
-        </div>
-        <div class="p-year">2024</div>
-      </a>
-
-      <!-- Projeto 3: Station Magic -->
-      <a href="./station-magic" class="project-row hover-trigger"
-        data-image="https://placehold.co/600x400/10b981/FFF?text=Station+Magic">
-        <div class="p-info">
-          <h2>STATION MAGIC</h2>
-          <p>Front-end Development</p>
-        </div>
-        <div class="p-year">2023</div>
-      </a>
+        <!-- Station Magic -->
+        <a href="./station-magic" class="project-card hover-trigger" data-image="https://placehold.co/600x400/10b981/FFF?text=Station+Magic">
+          <div class="card-header">
+            <span class="card-year">2023</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <div class="card-body">
+            <h3>Station Magic</h3>
+            <p>Desenvolvimento front-end com foco em design e interatividade</p>
+          </div>
+          <div class="card-footer">
+            <span class="tech-badge">Front-end</span>
+            <span class="tech-badge">CSS</span>
+          </div>
+        </a>
+      </div>
     </section>
 
+    <!-- FOOTER / CONTATO -->
+    <footer class="footer" id="contact">
+      <div class="footer-cta">
+        <span class="cta-label">PRÓXIMO PASSO</span>
+        <h2 class="cta-title">
+          Tem um projeto<br>
+          <span class="gradient-text">em mente?</span>
+        </h2>
+        <a href="mailto:mayck22.03@hotmail.com" class="cta-email">
+          mayck22.03@hotmail.com
+          <span class="email-arrow">→</span>
+        </a>
+      </div>
 
-    <footer>
-      <div class="contact">
-        <h2>VAMOS CONVERSAR?</h2>
-        <a href="mailto:mayck22.03@hotmail.com">mayck22.03@hotmail.com</a>
-        <div class="links">
-          <a href="https://www.linkedin.com/in/mayck-eduardo" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://github.com/Mayck-E" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <div class="footer-bottom">
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/mayck-eduardo" target="_blank" rel="noopener noreferrer" class="social-link">
+            <span class="social-name">LinkedIn</span>
+            <span class="social-arrow">↗</span>
+          </a>
+          <a href="https://github.com/Mayck-E" target="_blank" rel="noopener noreferrer" class="social-link">
+            <span class="social-name">GitHub</span>
+            <span class="social-arrow">↗</span>
+          </a>
         </div>
-        <div style="margin-top: 3rem;">
-          <a href="/resumo.pdf" download style="display: inline-block; padding: 1rem 2rem; border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; font-weight: 600; text-transform: uppercase; transition: all 0.3s ease; text-decoration: none;" onmouseover="this.style.background='var(--accent)'; this.style.color='var(--bg)';" onmouseout="this.style.background='transparent'; this.style.color='var(--accent)';">Baixar Resumo / CV</a>
+
+        <div class="footer-actions">
+          <a href="/resumo.pdf" download class="btn-download">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Baixar CV
+          </a>
         </div>
-        <p style="margin-top: 2rem; opacity: 0.3; font-size: 0.8rem;">Soli Deo Gloria</p>
+
+        <div class="footer-credits">
+          <p>© 2026 Mayck Santos. Todos os direitos reservados.</p>
+          <p class="credits-note">Soli Deo Gloria</p>
+        </div>
       </div>
     </footer>
 

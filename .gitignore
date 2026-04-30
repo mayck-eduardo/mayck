@@ -1,27 +1,47 @@
-# Logs
-logs
-*.log
+# Vite
+dist/
+dist-ssr/
+
+# Node
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Firebase
+.firebase/
+.firestore/
+
+# Environment / secrets
 .env
 .env.*
-.firebase/
+.env.*.local
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Build / caches
+.cache/
+tmp/
+*.log
+coverage/
+*.tsbuildinfo
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+
+# Misc
+*.tgz
+*.tar.gz
+.parcel-cache/

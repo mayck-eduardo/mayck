@@ -1,102 +1,95 @@
-import gsap from 'gsap';
+import gsap from 'gsap'
 
 export function initCursor() {
-    // 1. Cria ou recupra o ponto do cursor principal
-    let cursor = document.querySelector('.cursor') as HTMLElement;
-    if (!cursor) {
-        cursor = document.createElement('div');
-        cursor.classList.add('cursor');
-        document.body.appendChild(cursor);
-    }
-    
-    // 2. Cria o Canvas para o rastro branco
-    let canvas = document.querySelector('.pointer-trail') as HTMLCanvasElement;
-    if (!canvas) {
-      canvas = document.createElement('canvas');
-      canvas.classList.add('pointer-trail');
-      document.body.appendChild(canvas);
-    }
-    
-    const ctx = canvas.getContext('2d');
-    let points: {x: number, y: number, life: number}[] = [];
-    let mouseX = 0;
-    let mouseY = 0;
+  const cursor = document.querySelector('.cursor') as HTMLElement
+  const follower = document.querySelector('.cursor-follower') as HTMLElement
+  const previewImg = document.querySelector('.hover-img') as HTMLImageElement
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas(); // Chamada Inicial
+  if (!cursor) return
 
-    window.addEventListener('mousemove', (e: MouseEvent) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        
-        points.push({ x: mouseX, y: mouseY, life: 1 });
+  let mouseX = 0
+  let mouseY = 0
+  let followerX = 0
+  let followerY = 0
 
-        gsap.to(cursor, {
-          x: mouseX - 7,
-          y: mouseY - 7,
-          duration: 0.1,
-          ease: "power2.out"
-        });
-    });
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX
+    mouseY = e.clientY
 
-    function renderTrail() {
-      if (!ctx) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      points = points.filter(p => p.life > 0.05);
+    gsap.to(cursor, {
+      x: mouseX - 4,
+      y: mouseY - 4,
+      duration: 0.1,
+      ease: 'power2.out'
+    })
+  })
 
-      if (points.length > 1) {
-        ctx.beginPath();
-        ctx.moveTo(points[0].x, points[0].y);
-        
-        for (let i = 1; i < points.length; i++) {
-            const point = points[i];
-            point.life -= 0.04; 
-            ctx.lineTo(point.x, point.y);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${point.life})`;
-            ctx.lineWidth = 3 * point.life;
-            ctx.lineCap = "round";
-            ctx.lineJoin = "round";
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(point.x, point.y);
-        }
-      }
-      requestAnimationFrame(renderTrail);
-    }
-    renderTrail();
+  function animateFollower() {
+    const dx = mouseX - followerX
+    const dy = mouseY - followerY
 
-    // 3. Lógica da Imagem Preview Hover (se existir na página atual)
-    const projectLinks = document.querySelectorAll('.hover-trigger') as NodeListOf<HTMLElement>;
-    const previewImg = document.querySelector('.hover-img') as HTMLImageElement;
-    if (previewImg && projectLinks.length > 0) {
-      const moveX = gsap.quickTo(previewImg, "x", { duration: 0.4, ease: "power3" });
-      const moveY = gsap.quickTo(previewImg, "y", { duration: 0.4, ease: "power3" });
+    followerX += dx * 0.12
+    followerY += dy * 0.12
+
+    gsap.set(follower, {
+      x: followerX - 16,
+      y: followerY - 16
+    })
+
+    requestAnimationFrame(animateFollower)
+  }
+
+  if (follower) {
+    animateFollower()
+  }
+
+  // Expand cursor on interactive elements
+  const interactiveElements = document.querySelectorAll('a, button, .project-card, .cert-card, .tag')
+
+  interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      follower?.classList.add('expanded')
+      cursor.style.transform = 'scale(0.5)'
+    })
+
+    el.addEventListener('mouseleave', () => {
+      follower?.classList.remove('expanded')
+      cursor.style.transform = 'scale(1)'
+    })
+  })
+
+  // Project preview image
+  if (previewImg) {
+    const projectLinks = document.querySelectorAll('.hover-trigger') as NodeListOf<HTMLElement>
+
+    if (projectLinks.length > 0) {
+      const moveX = gsap.quickTo(previewImg, 'x', { duration: 0.4, ease: 'power3' })
+      const moveY = gsap.quickTo(previewImg, 'y', { duration: 0.4, ease: 'power3' })
 
       projectLinks.forEach((link) => {
         link.addEventListener('mouseenter', () => {
-          const imageUrl = link.getAttribute('data-image');
-          const projectName = link.querySelector('h2')?.textContent || 'Projeto';
-          
-          if (imageUrl) previewImg.src = imageUrl;
-          previewImg.alt = `Preview do projeto ${projectName}`;
+          const imageUrl = link.getAttribute('data-image')
+          const projectName = link.querySelector('h3')?.textContent || 'Projeto'
 
-          gsap.to(previewImg, { opacity: 1, scale: 1, duration: 0.3 });
-          if (cursor) gsap.to(cursor, { scale: 3, duration: 0.3, mixBlendMode: 'normal' });
-        });
+          if (imageUrl) previewImg.src = imageUrl
+          previewImg.alt = `Preview do projeto ${projectName}`
+
+          gsap.to(previewImg, { opacity: 1, scale: 1, duration: 0.3 })
+          gsap.to(cursor, { opacity: 0, duration: 0.3 })
+          gsap.to(follower, { opacity: 0, duration: 0.3 })
+        })
 
         link.addEventListener('mouseleave', () => {
-          gsap.to(previewImg, { opacity: 0, scale: 0.8, duration: 0.3 });
-          if (cursor) gsap.to(cursor, { scale: 1, duration: 0.3, mixBlendMode: 'difference' });
-        });
+          gsap.to(previewImg, { opacity: 0, scale: 0.8, duration: 0.3 })
+          gsap.to(cursor, { opacity: 1, duration: 0.3 })
+          gsap.to(follower, { opacity: 1, duration: 0.3 })
+        })
 
         link.addEventListener('mousemove', (e: MouseEvent) => {
-          moveX(e.clientX + 30);
-          moveY(e.clientY - 110);
-        });
-      });
+          moveX(e.clientX + 30)
+          moveY(e.clientY - 100)
+        })
+      })
     }
+  }
 }
