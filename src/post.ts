@@ -25,7 +25,14 @@ async function loadSinglePost(postId: string, isShared: boolean = false) {
 
             // Formatar data
             let dateString = "Recentemente";
-            if (data.createdAt) {
+            if (data.customDate) {
+                const parts = data.customDate.split('-');
+                if(parts.length === 3) {
+                    dateString = new Date(parts[0], parts[1]-1, parts[2]).toLocaleDateString('pt-BR', { 
+                        day: '2-digit', month: 'long', year: 'numeric' 
+                    });
+                }
+            } else if (data.createdAt) {
                 const dateObj = data.createdAt.toDate();
                 dateString = dateObj.toLocaleDateString('pt-BR', { 
                     day: '2-digit', month: 'long', year: 'numeric' 
@@ -33,13 +40,16 @@ async function loadSinglePost(postId: string, isShared: boolean = false) {
             }
 
             // [Visitante ou Logado] - Cria view limpa
+            const actualOriginalId = isShared ? (data.originalId || postId) : postId;
+            
             let htmlPayload = `
-                <div class="post-header-area">
+                <div class="post-header-area" style="position:relative;">
+                    <a href="/admin?edit=${actualOriginalId}" style="position:absolute; right:0; top:0; background:var(--blog-border); padding:0.5rem 1rem; border-radius:6px; font-size:0.8rem; border: 1px solid var(--blog-border); color: var(--blog-text-primary); text-decoration: none; transition: 0.2s;" onmouseover="this.style.background='var(--blog-surface)'" onmouseout="this.style.background='var(--blog-border)'">✏️ Editar</a>
                     <div class="post-article-meta">${isShared ? '⭐ ACESSO TEMPORÁRIO | ' : ''}<span class="category">${data.category || 'Geral'}</span> • Publicado em ${dateString}</div>
                     <h1 class="post-article-title">${data.title}</h1>
                     <p class="post-article-desc">${data.desc}</p>
                 </div>
-                <div class="post-article-body">
+                <div class="post-article-body ql-editor">
                     ${data.content}
                 </div>
             `;
@@ -61,14 +71,14 @@ async function loadSinglePost(postId: string, isShared: boolean = false) {
             if (!isShared) {
                 const btnGenerateLink = document.getElementById("btnGenerateLink");
                 if (btnGenerateLink) {
-                    btnGenerateLink.addEventListener("click", () => handleGenerateShareLink(data));
+                    btnGenerateLink.addEventListener("click", () => handleGenerateShareLink({ ...data, id: docSnap.id }));
                 }
             }
 
         } else {
             postArticle.innerHTML = `
                 <h2 style='text-align:center'>404: Link expirado ou excluído.</h2>
-                ${isShared ? "<p style='text-align:center; opacity:0.6; margin-top:2rem'>O tempo de leitura deste artigo exclusivo pode ter acabado.</p>" : ""}
+                ${isShared ? "<p style='text-align:center; opacity:0.6; margin-top:2rem'>O tempo de visualização desta anotação expirou.</p>" : ""}
             `;
         }
     } catch (error) {
@@ -96,11 +106,12 @@ async function handleGenerateShareLink(originalData: any) {
         const novoId = await addDoc(collection(db, "shared_posts"), {
             ...originalData,
             originalTitle: originalData.title,
+            originalId: originalData.id || "",
             expiresAt: expiracaoTimestamp
         });
 
         // Retorna a URL customizada
-        const shareUrl = `${window.location.origin}/post?share=${novoId.id}`;
+        const shareUrl = `${window.location.origin}/nota?share=${novoId.id}`;
         
         // Copia a url pro clipboard invisivelmente
         navigator.clipboard.writeText(shareUrl);
@@ -136,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Ta logado de verdade, libera 
                 loadSinglePost(postId, false);
             } else {
-                window.location.href = "/admin"; // Chuta invasor fora 
+                window.location.href = `/admin?edit=${postId}`; // Redireciona para o admin guardando o ID
             }
         });
         return;

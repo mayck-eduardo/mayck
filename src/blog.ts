@@ -11,7 +11,7 @@ const feed = document.getElementById("feed") as HTMLElement;
 async function fetchPosts() {
     try {
         // Exibe loader
-        feed.innerHTML = "<p style='text-align:center; opacity:0.5;'>Carregando posts do servidor...</p>";
+        feed.innerHTML = "<p style='text-align:center; opacity:0.5;'>Carregando anotações protegidas...</p>";
 
         // Cria a Query: Puxe os posts do mais novo para o mais velho (Data 'createdAt' declinante)
         const postsQuery = query(collection(db, "posts"), orderBy("createdAt", "desc"));
@@ -21,7 +21,7 @@ async function fetchPosts() {
         feed.innerHTML = "";
 
         if (snapshot.empty) {
-            feed.innerHTML = "<p style='text-align:center; opacity:0.5;'>Nenhuma publicação encontrada. Você deve postar algo em breve no painel!</p>";
+            feed.innerHTML = "<p style='text-align:center; opacity:0.5;'>Seu bloco de notas está vazio. Crie uma nota no painel!</p>";
             return;
         }
 
@@ -33,13 +33,18 @@ async function fetchPosts() {
 
             // Parse Date
             let dateString = "Recente";
-            if (data.createdAt) {
-                // Firebase timestamp to JS Date convert
+            if (data.customDate) {
+                const parts = data.customDate.split('-');
+                if(parts.length === 3) {
+                    dateString = new Date(parts[0], parts[1]-1, parts[2]).toLocaleDateString('pt-BR', { 
+                        day: '2-digit', month: 'long', year: 'numeric' 
+                    });
+                }
+            } else if (data.createdAt) {
                 const dateObj = data.createdAt.toDate();
-                // Format ex: 10 DEZ 2025
                 dateString = dateObj.toLocaleDateString('pt-BR', { 
-                    day: '2-digit', month: 'short', year: 'numeric' 
-                }).toUpperCase();
+                    day: '2-digit', month: 'long', year: 'numeric' 
+                });
             }
 
             const article = document.createElement("article");
@@ -48,7 +53,7 @@ async function fetchPosts() {
             delayIndex++;
             
             // Define o clique na URL enviando parâmetro ID pelo GET 
-            article.onclick = () => window.location.href = `/post?id=${postId}`;
+            article.onclick = () => window.location.href = `/nota?id=${postId}`;
 
             article.innerHTML = `
                 <div class="blog-post-meta"><span class="category">${data.category || 'Geral'}</span> • ${dateString}</div>
