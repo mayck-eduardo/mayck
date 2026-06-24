@@ -1,7 +1,6 @@
 import gsap from 'gsap';
 
 export function initCursor() {
-    // 1. Cria ou recupra o ponto do cursor principal
     let cursor = document.querySelector('.cursor') as HTMLElement;
     if (!cursor) {
         cursor = document.createElement('div');
@@ -9,7 +8,6 @@ export function initCursor() {
         document.body.appendChild(cursor);
     }
     
-    // 2. Cria o Canvas para o rastro branco
     let canvas = document.querySelector('.pointer-trail') as HTMLCanvasElement;
     if (!canvas) {
       canvas = document.createElement('canvas');
@@ -27,7 +25,7 @@ export function initCursor() {
       canvas.height = window.innerHeight;
     }
     window.addEventListener('resize', resizeCanvas);
-    resizeCanvas(); // Chamada Inicial
+    resizeCanvas();
 
     window.addEventListener('mousemove', (e: MouseEvent) => {
         mouseX = e.clientX;
@@ -69,7 +67,6 @@ export function initCursor() {
     }
     renderTrail();
 
-    // 3. Lógica da Imagem Preview Hover (se existir na página atual)
     const projectLinks = document.querySelectorAll('.hover-trigger') as NodeListOf<HTMLElement>;
     const previewImg = document.querySelector('.hover-img') as HTMLImageElement;
     if (previewImg && projectLinks.length > 0) {

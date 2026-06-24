@@ -1,0 +1,29 @@
+---
+import BlogLayout from '../layouts/BlogLayout.astro';
+---
+
+<BlogLayout title="Post | Mayck Santos"
+  description="Artigo exclusivo no blog de Mayck Santos."
+  canonical="https://mayck-eduardo.web.app/post">
+
+  <div class="blog-container">
+    <header class="blog-header" style="margin-bottom: 2rem; border: none; padding-bottom: 0;">
+      <a href="/blog" class="blog-back-link">← Todos os Artigos</a>
+    </header>
+
+    <main>
+      <article class="blog-post-content" id="postArticle">
+        <div class="blog-loading">Carregando processador de texto...</div>
+      </article>
+    </main>
+
+    <footer class="blog-footer">
+      © 2026 Mayck Santos • Engenharia & Código Limpo
+    </footer>
+  </div>
+
+  <div class="reading-progress-container"><div class="reading-progress-bar" id="progressBar"></div></div>
+  <div class="back-to-top" id="backToTop" title="Voltar ao Topo">↑</div>
+
+  <script type="module" src="/src/scripts/post.ts"></script>
+</BlogLayout>

@@ -1,0 +1,43 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = "Blog de Mayck Santos - Artigos sobre desenvolvimento, tecnologia e engenharia da computação.",
+  canonical = "https://mayck-eduardo.web.app/blog",
+  noindex = false,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content="Mayck Santos" />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+  {!noindex && <meta name="robots" content="index, follow" />}
+  <link rel="canonical" href={canonical} />
+  <meta name="theme-color" content="#09090b" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Mayck Santos" />
+
+  <link rel="stylesheet" href="/src/styles/blog.css" />
+</head>
+<body>
+  <slot />
+</body>
+</html>

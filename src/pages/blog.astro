@@ -1,0 +1,32 @@
+---
+import BlogLayout from '../layouts/BlogLayout.astro';
+---
+
+<BlogLayout title="Insights & Blog | Mayck Santos"
+  canonical="https://mayck-eduardo.web.app/blog">
+
+  <div class="blog-container">
+    <header class="blog-header">
+      <div class="blog-header-content">
+        <img src="https://github.com/Mayck-E.png" alt="Mayck Santos" class="blog-author-avatar">
+        <div>
+          <h1>INSIGHTS</h1>
+          <p class="blog-subtitle">Ideias, códigos e aprendizados por Mayck Santos.</p>
+        </div>
+      </div>
+      <a href="/" class="blog-back-link">← Voltar ao Portfólio</a>
+    </header>
+
+    <main>
+      <div class="blog-post-list" id="feed">
+        <div class="blog-loading">Carregando artigos selecionados...</div>
+      </div>
+    </main>
+
+    <footer class="blog-footer">
+      © 2026 Mayck Santos • Engenharia & Código Limpo
+    </footer>
+  </div>
+
+  <script type="module" src="/src/scripts/blog.ts"></script>
+</BlogLayout>

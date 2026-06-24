@@ -1,0 +1,24 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const props = Astro.props;
+---
+
+<BaseLayout title={props.title} description={props.description} canonical={props.canonical} ogImage={props.ogImage} ogType="article">
+  <link rel="stylesheet" href="/src/styles/project.css" />
+
+  <div class="cursor"></div>
+
+  <div class="content">
+    <slot />
+  </div>
+
+  <script type="module" src="/src/scripts/main.ts"></script>
+</BaseLayout>

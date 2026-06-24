@@ -1,8 +1,6 @@
-import { auth, db } from "./firebase-config";
+import { auth, db } from "../lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, collection, addDoc, Timestamp } from "firebase/firestore";
-// Import removido para separação visual: import { initCursor } from "./cursor";
-// initCursor();
 
 const postArticle = document.getElementById("postArticle") as HTMLElement;
 
@@ -11,10 +9,8 @@ async function loadSinglePost(postId: string, isShared: boolean = false) {
         let docRef;
 
         if (isShared) {
-            // Busca na coleção temporária share 
             docRef = doc(db, "shared_posts", postId);
         } else {
-            // Busca na coleção oficial, só pra logados
             docRef = doc(db, "posts", postId);
         }
 
@@ -23,7 +19,6 @@ async function loadSinglePost(postId: string, isShared: boolean = false) {
         if (docSnap.exists()) {
             const data = docSnap.data();
 
-            // Formatar data
             let dateString = "Recentemente";
             if (data.createdAt) {
                 const dateObj = data.createdAt.toDate();
@@ -32,7 +27,6 @@ async function loadSinglePost(postId: string, isShared: boolean = false) {
                 });
             }
 
-            // [Visitante ou Logado] - Cria view limpa
             let htmlPayload = `
                 <div class="post-header-area">
                     <div class="post-article-meta">${isShared ? '⭐ ACESSO TEMPORÁRIO | ' : ''}<span class="category">${data.category || 'Geral'}</span> • Publicado em ${dateString}</div>
@@ -44,7 +38,6 @@ async function loadSinglePost(postId: string, isShared: boolean = false) {
                 </div>
             `;
 
-            // [Somente Logado] - Se for o Admin vendo o post oficial, mostrar botão de Gerar Link Temporário
             if (!isShared) {
                 htmlPayload += `
                 <div class="blog-admin-panel">
@@ -57,7 +50,6 @@ async function loadSinglePost(postId: string, isShared: boolean = false) {
 
             postArticle.innerHTML = htmlPayload;
 
-            // Atrela o evento de Gerar Link ao botão injetado pra Admins
             if (!isShared) {
                 const btnGenerateLink = document.getElementById("btnGenerateLink");
                 if (btnGenerateLink) {
@@ -77,8 +69,6 @@ async function loadSinglePost(postId: string, isShared: boolean = false) {
     }
 }
 
-
-// Função auxiliar envia as cópia do Post para fila e bota +24h
 async function handleGenerateShareLink(originalData: any) {
     const btn = document.getElementById("btnGenerateLink") as HTMLButtonElement;
     const status = document.getElementById("shareStatus") as HTMLElement;
@@ -87,22 +77,18 @@ async function handleGenerateShareLink(originalData: any) {
     btn.innerText = "Gerando Link Seguro...";
 
     try {
-        // Obter timestamp daqui 24 horas
         const umDiaMilissegundos = 24 * 60 * 60 * 1000;
         const expiracaoDate = new Date(Date.now() + umDiaMilissegundos);
         const expiracaoTimestamp = Timestamp.fromDate(expiracaoDate);
 
-        // Clona os dados preenchendo o 'expiresAt' do Firebase Timestamp nativo
         const novoId = await addDoc(collection(db, "shared_posts"), {
             ...originalData,
             originalTitle: originalData.title,
             expiresAt: expiracaoTimestamp
         });
 
-        // Retorna a URL customizada
         const shareUrl = `${window.location.origin}/post?share=${novoId.id}`;
         
-        // Copia a url pro clipboard invisivelmente
         navigator.clipboard.writeText(shareUrl);
         
         status.innerHTML = `✅ Link gerado e copiado! (Expira em 1 Dia)<br><br><span style="user-select:all; border-bottom:1px solid #3b82f6;">${shareUrl}</span>`;
@@ -116,40 +102,32 @@ async function handleGenerateShareLink(originalData: any) {
     }
 }
 
-
-// INÍCIO DO CICLO DA PÁGINA
 document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
     const shareId = urlParams.get('share');
 
-    // 1. Visitante usando o link gerado pelo Adm (?share=xxx)
     if (shareId && !postId) {
         loadSinglePost(shareId, true); 
         return; 
     }
 
-    // 2. Administrador acessando o banco principal (?id=xxx)
     if (postId && !shareId) {
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // Ta logado de verdade, libera 
                 loadSinglePost(postId, false);
             } else {
-                window.location.href = "/admin"; // Chuta invasor fora 
+                window.location.href = "/admin";
             }
         });
         return;
     }
 
-    // Se a pessoa entrou na raiz do /post nua
     postArticle.innerHTML = "<h2 style='text-align:center'>URL Inválida.</h2>";
 
 });
 
-// Scroll Events (Progress Bar e Back-to-top)
 window.addEventListener("scroll", () => {
-    // Cálculo do progresso de leitura
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const progress = (scrollTop / scrollHeight) * 100;
@@ -157,7 +135,6 @@ window.addEventListener("scroll", () => {
     const progressBar = document.getElementById("progressBar");
     if (progressBar) progressBar.style.width = progress + "%";
 
-    // Mostra/oculta botão Voltar ao Topo (se scrollar mais que 300px)
     const backBtn = document.getElementById("backToTop");
     if (backBtn) {
         if (scrollTop > 300) {
@@ -168,7 +145,6 @@ window.addEventListener("scroll", () => {
     }
 });
 
-// Ação de clique do Voltar ao Topo
 const topBtn = document.getElementById("backToTop");
 if(topBtn) {
     topBtn.addEventListener("click", () => {

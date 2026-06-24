@@ -1,11 +1,10 @@
-import { auth, db } from "./firebase-config";
+import { auth, db } from "../lib/firebase";
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { collection, addDoc, serverTimestamp, getDocs, query, orderBy } from "firebase/firestore";
 import { initCursor } from "./cursor";
 
 initCursor();
 
-// Elementos da DOM
 const authPanel = document.getElementById("authPanel") as HTMLElement;
 const dashboardPanel = document.getElementById("dashboardPanel") as HTMLElement;
 const loginForm = document.getElementById("loginForm") as HTMLFormElement;
@@ -18,7 +17,6 @@ const btnPublish = document.getElementById("btnPublish") as HTMLButtonElement;
 const postStatus = document.getElementById("postStatus") as HTMLElement;
 const sharedList = document.getElementById("sharedList") as HTMLElement;
 
-// Estado
 onAuthStateChanged(auth, (user) => {
     if (user) {
         authPanel.classList.remove("active");
@@ -29,7 +27,6 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-// Login
 loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     loginStatus.innerText = "Verificando credenciais...";
@@ -46,8 +43,6 @@ loginForm.addEventListener("submit", async (e) => {
 
 btnLogout.addEventListener("click", () => signOut(auth));
 
-
-// Criar Novo Post
 postForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     btnPublish.disabled = true;
@@ -60,7 +55,7 @@ postForm.addEventListener("submit", async (e) => {
             category: (document.getElementById("postCategory") as HTMLInputElement).value,
             desc: (document.getElementById("postDesc") as HTMLTextAreaElement).value,
             content: (document.getElementById("postContent") as HTMLTextAreaElement).value,
-            createdAt: serverTimestamp() // Firestore Server Time
+            createdAt: serverTimestamp()
         });
 
         postForm.reset();
@@ -77,11 +72,9 @@ postForm.addEventListener("submit", async (e) => {
     }
 });
 
-// Adicionando a função no escopo global para o onclick inline do HTML chamar (Tabs)
 (window as any).fetchSharedLinks = async function() {
     sharedList.innerHTML = "<p style='text-align:center; opacity:0.5;'>Buscando links no Firebase...</p>";
     try {
-        // Puxamos a coleção temporária gerada
         const q = query(collection(db, "shared_posts"), orderBy("expiresAt", "desc"));
         const snapshot = await getDocs(q);
 
@@ -99,7 +92,6 @@ postForm.addEventListener("submit", async (e) => {
             const expiraEmObj = data.expiresAt.toDate();
             const expirado = hoje > expiraEmObj;
             
-            // Formatador visual de status
             const statusBadge = expirado 
                 ? `<span style="color:#ff4757; border: 1px solid #ff4757; padding:2px 8px; border-radius:12px; font-size:0.7rem;">⚠️ Expirou</span>` 
                 : `<span style="color:#2ed573; border: 1px solid #2ed573; padding:2px 8px; border-radius:12px; font-size:0.7rem;">✅ Online</span>`;
